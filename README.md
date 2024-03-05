@@ -91,7 +91,7 @@ Spring Lv.4 "스파르타 강의 사이트 서버 만들기"
 
  UCD
  -----
-![image](https://github.com/yuha00e/hh99-spring-lv4/assets/148833676/54a1b41e-7257-41b0-a09d-7687406d5c71)
+![image](https://github.com/yuha00e/hh99-spring-lv4/assets/148833676/fbf473c0-8495-4d1a-a6bb-dae43d465cd4)
 
  
  API 명세서
