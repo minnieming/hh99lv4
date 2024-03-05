@@ -101,3 +101,6 @@ Spring Lv.4 "스파르타 강의 사이트 서버 만들기"
 ERD
 -----
 
+<img width="723" alt="스크린샷 2024-03-05 오후 1 43 50" src="https://github.com/yuha00e/hh99-spring-lv4/assets/157681548/a3b6c1d0-b0ed-41f6-a9c2-28f4fa6903f9">
+
+
