@@ -1,7 +1,7 @@
 package com.sparta.hh99springlv4.user.security;
 
-import com.sparta.springlv3.user.entity.User;
-import com.sparta.springlv3.user.entity.UserRoleEnum;
+import com.sparta.hh99springlv4.user.entity.User;
+import com.sparta.hh99springlv4.user.entity.UserRoleEnum;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

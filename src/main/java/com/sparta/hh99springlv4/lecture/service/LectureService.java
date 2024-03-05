@@ -1,11 +1,11 @@
 package com.sparta.hh99springlv4.lecture.service;
 
 
-import com.sparta.springlv3.lecture.dto.LectureRequestDto;
-import com.sparta.springlv3.lecture.dto.LectureResponseDto;
-import com.sparta.springlv3.lecture.entity.CategoryEnum;
-import com.sparta.springlv3.lecture.entity.Lecture;
-import com.sparta.springlv3.lecture.repository.LectureRepository;
+import com.sparta.hh99springlv4.lecture.dto.LectureRequestDto;
+import com.sparta.hh99springlv4.lecture.dto.LectureResponseDto;
+import com.sparta.hh99springlv4.lecture.entity.CategoryEnum;
+import com.sparta.hh99springlv4.lecture.entity.Lecture;
+import com.sparta.hh99springlv4.lecture.repository.LectureRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

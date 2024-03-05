@@ -1,6 +1,8 @@
 package com.sparta.hh99springlv4.user.repository;
 
-import com.sparta.springlv3.user.entity.User;
+
+
+import com.sparta.hh99springlv4.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

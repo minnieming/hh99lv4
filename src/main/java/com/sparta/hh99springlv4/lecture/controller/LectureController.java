@@ -1,10 +1,11 @@
 package com.sparta.hh99springlv4.lecture.controller;
 
-import com.sparta.springlv3.lecture.dto.LectureRequestDto;
-import com.sparta.springlv3.lecture.dto.LectureResponseDto;
-import com.sparta.springlv3.lecture.entity.CategoryEnum;
-import com.sparta.springlv3.lecture.service.LectureService;
-import com.sparta.springlv3.user.security.UserDetailsImpl;
+
+import com.sparta.hh99springlv4.lecture.dto.LectureRequestDto;
+import com.sparta.hh99springlv4.lecture.dto.LectureResponseDto;
+import com.sparta.hh99springlv4.lecture.entity.CategoryEnum;
+import com.sparta.hh99springlv4.lecture.service.LectureService;
+import com.sparta.hh99springlv4.user.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

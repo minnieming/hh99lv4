@@ -1,12 +1,11 @@
 package com.sparta.hh99springlv4.user.service;
 
-
-import com.sparta.springlv3.user.dto.SignupRequestDto;
-import com.sparta.springlv3.user.dto.SignupResponseDto;
-import com.sparta.springlv3.user.entity.DepartmentEnum;
-import com.sparta.springlv3.user.entity.User;
-import com.sparta.springlv3.user.entity.UserRoleEnum;
-import com.sparta.springlv3.user.repository.UserRepository;
+import com.sparta.hh99springlv4.user.dto.SignupRequestDto;
+import com.sparta.hh99springlv4.user.entity.User;
+import com.sparta.hh99springlv4.user.dto.SignupResponseDto;
+import com.sparta.hh99springlv4.user.entity.DepartmentEnum;
+import com.sparta.hh99springlv4.user.entity.UserRoleEnum;
+import com.sparta.hh99springlv4.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

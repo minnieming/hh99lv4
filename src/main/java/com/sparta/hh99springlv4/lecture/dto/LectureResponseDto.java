@@ -1,8 +1,9 @@
 package com.sparta.hh99springlv4.lecture.dto;
 
-import com.sparta.springlv3.lecture.entity.CategoryEnum;
-import com.sparta.springlv3.lecture.entity.Lecture;
-import com.sparta.springlv3.teacher.entity.Teacher;
+
+import com.sparta.hh99springlv4.lecture.entity.CategoryEnum;
+import com.sparta.hh99springlv4.lecture.entity.Lecture;
+import com.sparta.hh99springlv4.teacher.entity.Teacher;
 import lombok.Getter;
 
 import java.time.LocalDate;

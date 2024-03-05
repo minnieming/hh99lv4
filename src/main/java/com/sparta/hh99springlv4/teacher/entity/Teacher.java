@@ -2,8 +2,9 @@ package com.sparta.hh99springlv4.teacher.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.sparta.springlv3.lecture.entity.Lecture;
-import com.sparta.springlv3.teacher.dto.TeacherRequestDto;
+
+import com.sparta.hh99springlv4.lecture.entity.Lecture;
+import com.sparta.hh99springlv4.teacher.dto.TeacherRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

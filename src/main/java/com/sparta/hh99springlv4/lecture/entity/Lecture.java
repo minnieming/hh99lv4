@@ -1,7 +1,8 @@
 package com.sparta.hh99springlv4.lecture.entity;
 
-import com.sparta.springlv3.lecture.dto.LectureRequestDto;
-import com.sparta.springlv3.teacher.entity.Teacher;
+
+import com.sparta.hh99springlv4.lecture.dto.LectureRequestDto;
+import com.sparta.hh99springlv4.teacher.entity.Teacher;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
