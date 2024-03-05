@@ -1,6 +1,7 @@
 package com.sparta.hh99springlv4.lecture.entity;
 
 
+import com.sparta.hh99springlv4.comment.entity.Comment;
 import com.sparta.hh99springlv4.lecture.dto.LectureRequestDto;
 import com.sparta.hh99springlv4.teacher.entity.Teacher;
 import jakarta.persistence.*;
@@ -9,6 +10,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -40,6 +43,10 @@ public class Lecture {
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
+
+    // 임의로 매팽
+    @OneToMany(mappedBy = "lecture", cascade = CascadeType.ALL)
+    private List<Comment> comments = new ArrayList<>();
 
 
     public Lecture(LectureRequestDto lectureRequestDto) {

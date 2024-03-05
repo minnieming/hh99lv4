@@ -7,6 +7,7 @@ import com.sparta.hh99springlv4.lecture.entity.CategoryEnum;
 import com.sparta.hh99springlv4.lecture.service.LectureService;
 import com.sparta.hh99springlv4.user.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.web.bind.annotation.*;
@@ -55,6 +56,13 @@ public class LectureController {
         throw new IllegalArgumentException("관리자가 아닙니다. 선택한 강사를 조회 할 수 없습니다.");
     }
 
+    // 선택한 강의 조회 + 댓글 조회
+
+//    @GetMapping("/select/lecture/comment/{lectureId}")
+//    public ResponseEntity<LectureCommentDto> getLectureWithComments(@PathVariable Long lectureId) {
+//        LectureCommentDto lectureWithCommentsDto = lectureService.findLectureComment(lectureId);
+//        return ResponseEntity.ok(lectureWithCommentsDto);
+//    }
 
     //     카테고리별 강의 목록 조회
     @GetMapping("/find/lecture/{category}")

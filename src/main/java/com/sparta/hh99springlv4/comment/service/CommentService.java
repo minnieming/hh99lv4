@@ -76,24 +76,23 @@ public class CommentService {
 
 
     // 선택한 강의 좋아요 등록  // + 과제에 불린값 // 선택 강의 조회 시 좋아요 수 함께 조회
-    public CommentResponseDto likesLecture(Long lectureId) {
-
-        // DB 에서 lectureId 로 강의 정보 조회
+    public boolean likesLecture(Long userId, Long lectureId) {
         Lecture lecture = lectureRepository.findByLectureId(lectureId)
-                .orElseThrow(() -> new NotFoundException("해당 강의는 존재하지 않습니다: " + lectureId));
+                .orElseThrow(() -> new NotFoundException("해당 강의를 찾을 수 없습니다."+ lectureId));
 
-        // 좋아요 등록 및 취소 처리
-        // 사용자가 해당 강의를 이미 좋아요 했다면 취소하고, 아니라면 좋아요 등록
-        if (lecture.getLikedUsers().contains(currentUser)) {
-            lecture.getLikedUsers().remove(currentUser);
-        } else {
-            lecture.getLikedUsers().add(currentUser);
+//        Like like = likeRepository.findByUserIdAndLectureId(userId, lectureId);
+//
+//        if (like == null) {
+//            // 좋아요가 없는 경우 -> 좋아요 등록
+//            like = new Like();
+//            like.setUser(userId);
+//            like.setLecture(lecture);
+//            likeRepository.save(like);
+//            return true; // 좋아요 등록 성공
+//        } else {
+//            // 좋아요가 있는 경우 -> 좋아요 취소
+//            likeRepository.delete(like);
+//            return false; // 좋아요 취소 성공
         }
-
-        lectureRepository.save(lecture);
-
-        // 성공적인 응답 반환
-        return new CommentResponseDto("좋아요 등록/취소가 성공적으로 처리되었습니다.");
-
     }
 }
