@@ -1,8 +1,8 @@
 package com.sparta.hh99springlv4.user.entity;
 
 public enum UserRoleEnum {
-    MANAGER(Authority.MANAGER),  // 매니저 권한
-    STAFF(Authority.STAFF);  // 스태프 권한
+    ADMIN(Authority.ADMIN),
+    USER(Authority.USER);
 
     private final String authority;
 
@@ -15,8 +15,8 @@ public enum UserRoleEnum {
     }
 
     public static class Authority { // 메서드
-        public static final String MANAGER = "ROLE_MANAGER";
-        public static final String STAFF = "ROLE_STAFF";
+        public static final String ADMIN = "ROLE_ADMIN";
+        public static final String USER = "ROLE_USER";
     }
 }
 

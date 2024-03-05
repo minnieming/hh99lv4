@@ -29,18 +29,6 @@ public class UserController {
 
     private final UserService userService;
 
-    // 로그인 페이지
-    @GetMapping("/user/login-page")
-    public String loginPage() {
-        return "login";
-    }
-
-    // 회원가입 페이지
-    @GetMapping("/user/signup")
-    public String signupPage() {
-        return "signup";
-    }
-
     // 회원 가입
     @PostMapping("/user/signup")
     public ResponseEntity<SignupResponseDto> signup(@Valid @RequestBody SignupRequestDto requestDto, BindingResult bindingResult) {
@@ -53,32 +41,4 @@ public class UserController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(userService.signup(requestDto));
     }
-
-
-    private ResponseEntity<?> handleRequest(Supplier<ResponseEntity<?>> supplier) {
-        try {
-            return supplier.get();
-        } catch (UnauthorizedException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
-        } catch (NotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("인터넷 서버 오류: " + e.getMessage());
-        }
-    }
-
-
-    // 회원 관련 정보 받기
-    @GetMapping("/user-info") // 사용자 정보 조회
-    @ResponseBody
-    public UserInfoDto getUserInfo(@AuthenticationPrincipal UserDetailsImpl userDetails) {
-        String userEmail = userDetails.getUser().getEmail();
-        String password = userDetails.getUser().getPassword();
-
-
-        return new UserInfoDto(userEmail,password);
-//        return new UserInfoDto(userEmail, isAdmin);
-    }
 }
-
-

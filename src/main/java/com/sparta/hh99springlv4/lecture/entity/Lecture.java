@@ -51,7 +51,6 @@ public class Lecture {
 
         this.teacher = lectureRequestDto.getTeacher();
 
-
     }
 
 }

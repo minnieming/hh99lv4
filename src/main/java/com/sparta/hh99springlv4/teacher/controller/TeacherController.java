@@ -22,8 +22,6 @@ public class TeacherController {
 
     // 강사 등록
     @PostMapping("/teacher")
-    // 로그인을 통해 발급받은 JWT 함께 요청
-    // @AuthenticationPrincipal UserDetails userDetails 매개변수를 사용하여 현재 요청에 대한 사용자 정보를 가져옵니다. 이 정보는 Spring Security를 사용하여 로그인 후에 JWT 인증 토큰을 통해 얻어진 사용자 정보
     public TeacherResponseDto createTeacher(@RequestBody TeacherRequestDto teacherRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
         // 로그인한 사용자가 관리자(매니저, 스태프)인지 확인
