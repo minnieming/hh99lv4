@@ -28,8 +28,8 @@ public class TeacherController {
 
         // 로그인한 사용자가 관리자(매니저, 스태프)인지 확인
         if (userDetails != null
-                && userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_MANAGER"))
-                || userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_STAFF"))) {
+                && userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))
+                || userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_USER"))) {
             return teacherService.createTeacher(teacherRequestDto);
         }
         throw new IllegalArgumentException("관리자가 아닙니다. 강사를 등록할 수 없습니다.");
@@ -38,7 +38,7 @@ public class TeacherController {
     // 선택한 강사 정보 수정
     @PutMapping("/teacherInfo/{teacherId}")
     public TeacherResponseDto infoTeacher(@PathVariable Long teacherId, @RequestBody TeacherRequestDto teacherRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        if (userDetails != null && userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_MANAGER"))) {
+        if (userDetails != null && userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
             return teacherService.infoTeacher(teacherId, teacherRequestDto);
         }
         throw new IllegalArgumentException("매니저가 아닙니다. 선택한 정보를 수정 할 수 없습니다.");
@@ -48,8 +48,8 @@ public class TeacherController {
     @GetMapping("/teacher/{teacherId}")
     public TeacherResponseDto updateTeacher(@PathVariable Long teacherId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         if (userDetails != null
-                && userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_MANAGER"))
-                || userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_STAFF"))) {
+                && userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))
+                || userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_USER"))) {
             return teacherService.updateTeacher(teacherId);
         }
         throw new IllegalArgumentException("관리자가 아닙니다. 선택한 강사를 조회 할 수 없습니다.");
@@ -59,8 +59,8 @@ public class TeacherController {
     @GetMapping("/lecture/{teacherId}")
     public List<LectureResponseDto> findTeacherLecutre(@PathVariable Long teacherId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         if (userDetails != null
-                && userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_MANAGER"))
-                || userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_STAFF"))) {
+                && userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))
+                || userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_USER"))) {
             return teacherService.findTeacherLecture(teacherId);
         }
         throw new IllegalArgumentException("관리자가 아닙니다. 선택한 강사가 촬영한 강의 목록 조회를 할 수 없습니다.");

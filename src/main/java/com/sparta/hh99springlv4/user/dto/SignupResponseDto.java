@@ -1,7 +1,6 @@
 package com.sparta.hh99springlv4.user.dto;
 
 
-import com.sparta.hh99springlv4.user.entity.DepartmentEnum;
 import com.sparta.hh99springlv4.user.entity.User;
 import com.sparta.hh99springlv4.user.entity.UserRoleEnum;
 import jakarta.validation.constraints.Email;
@@ -28,7 +27,7 @@ public class SignupResponseDto {
     @NotBlank
     private UserRoleEnum role;
 
-//    @NotBlank
+    //    @NotBlank
 //    private String createUserId;
 //
 //    private boolean admin = false;
@@ -37,7 +36,6 @@ public class SignupResponseDto {
     public SignupResponseDto(User user) {
         this.email = user.getEmail();
         this.password = user.getPassword();
-        this.department = user.getDepartment();
         this.role = user.getRole();
     }
 }

@@ -10,7 +10,6 @@ public class UserInfoDto {
 
     private String password;
 
-    private String department;
 
     private String auth;
 

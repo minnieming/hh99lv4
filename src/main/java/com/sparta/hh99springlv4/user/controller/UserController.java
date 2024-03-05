@@ -4,6 +4,7 @@ package com.sparta.hh99springlv4.user.controller;
 import com.sparta.hh99springlv4.user.dto.SignupRequestDto;
 import com.sparta.hh99springlv4.user.dto.SignupResponseDto;
 import com.sparta.hh99springlv4.user.dto.UserInfoDto;
+import com.sparta.hh99springlv4.user.exception.NotFoundException;
 import com.sparta.hh99springlv4.user.exception.UnauthorizedException;
 import com.sparta.hh99springlv4.user.security.UserDetailsImpl;
 import com.sparta.hh99springlv4.user.service.UserService;
