@@ -6,27 +6,30 @@ import lombok.Getter;
 
 @Getter
 public class TeacherResponseDto {
-    private String teacher_name; //강사이름
-    private int career; //경력
-    private String company; //회사
-    private String phone; //전화번호
-    private String introduction; //소개
+    private String teacherName; //강사이름
+    private int teacherCareer; //경력
+    private String teacherCompany; //회사
+    private String teacherPhone; //전화번호
+    private String teacherIntro; //소개
+
+
 
     public TeacherResponseDto(Teacher teacher) {
-        this.teacher_name = teacher.getTeacherName();
-        this.career = teacher.getCareer();
-        this.company = teacher.getCompany();
-        this.phone = teacher.getPhone();
-        this.introduction = teacher.getIntroduction();
+        this.teacherName = teacher.getTeacherName();
+        this.teacherCareer = teacher.getTeacherCareer();
+        this.teacherCompany = teacher.getTeacherCompany();
+        this.teacherPhone = teacher.getTeacherPhone();
+        this.teacherIntro = teacher.getTeacherIntro();
     }
-
-    public TeacherResponseDto (Lecture lecture) {
-        this.teacher_name = lecture.getTeacher().getTeacherName();
-        this.career = lecture.getTeacher().getCareer();
-        this.company = lecture.getTeacher().getCompany();
-        this.phone = lecture.getTeacher().getPhone();
-        this.introduction = lecture.getTeacher().getIntroduction();
-    }
+//
+//    public TeacherResponseDto (Lecture lecture) {
+//        this.teacherName =  lecture.getTeacher().getTeacherName();
+//        this.teacherCareer = lecture.getTeacher().getTeacherCareer();
+//        this.teacherCompany =lecture.getTeacher().getTeacherCompany();
+//        this.teacherPhone = lecture.getTeacher().getTeacherPhone();
+//        this.teacherIntro = lecture.getTeacher().getTeacherIntro();
+//
+//    }
 }
 
 

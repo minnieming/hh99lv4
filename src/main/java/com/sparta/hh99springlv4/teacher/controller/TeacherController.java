@@ -5,8 +5,11 @@ import com.sparta.hh99springlv4.lecture.dto.LectureResponseDto;
 import com.sparta.hh99springlv4.teacher.dto.TeacherRequestDto;
 import com.sparta.hh99springlv4.teacher.dto.TeacherResponseDto;
 import com.sparta.hh99springlv4.teacher.service.TeacherService;
+import com.sparta.hh99springlv4.user.entity.UserRoleEnum;
 import com.sparta.hh99springlv4.user.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.web.bind.annotation.*;
@@ -21,17 +24,24 @@ public class TeacherController {
     private final TeacherService teacherService;
 
     // 강사 등록
+    @Secured(UserRoleEnum.Authority.ADMIN)
     @PostMapping("/teacher")
-    public TeacherResponseDto createTeacher(@RequestBody TeacherRequestDto teacherRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public ResponseEntity<?> createTeacher(@RequestBody TeacherRequestDto teacherRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
         // 로그인한 사용자가 관리자(매니저, 스태프)인지 확인
-        if (userDetails != null
-                && userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))
-                || userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_USER"))) {
-            return teacherService.createTeacher(teacherRequestDto);
-        }
-        throw new IllegalArgumentException("관리자가 아닙니다. 강사를 등록할 수 없습니다.");
+//        if (userDetails != null
+//                && userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))
+//                || userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_USER"))) {
+//            return teacherService.createTeacher(teacherRequestDto);
+//        }
+//        throw new IllegalArgumentException("관리자가 아닙니다. 강사를 등록할 수 없습니다.");
+//    }
+        TeacherResponseDto teacherResponseDto = teacherService.createTeacher(teacherRequestDto);
+        return ResponseEntity.ok(teacherResponseDto);
     }
+
+    // @Secured("ROLE_ADMIN")
+    // @Secured(UserRoleEnum.ADMIN)
 
     // 선택한 강사 정보 수정
     @PutMapping("/teacherInfo/{teacherId}")

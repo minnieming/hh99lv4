@@ -5,6 +5,7 @@ import com.sparta.hh99springlv4.user.dto.LoginRequestDto;
 import com.sparta.hh99springlv4.user.entity.UserRoleEnum;
 import com.sparta.hh99springlv4.user.jwt.JwtUtil;
 import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -35,8 +36,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             // 로그인 정보를 이용하여 UsernamePasswordAuthenticationToken 생성하여 반환
             return getAuthenticationManager().authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            requestDto.getEmail(),
-                            requestDto.getPassword(),
+                            requestDto.getUserEmail(),
+                            requestDto.getUserPassword(),
                             null
                     )
             );
@@ -49,7 +50,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     // 로그인 성공 처리
     @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) {
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
 
         // 인증 결과에서 사용자 정보와 권한(Role) 추출
         String email = ((UserDetailsImpl) authResult.getPrincipal()).getUsername();
@@ -61,6 +62,13 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         // 로그인 성공 메시지를 로그에 출력
         log.info("사용자 '{}'의 로그인 성공", email);
+
+        // 한글을 인코딩할 때 발생하는 문제를 해결하기 위한  UTF-8 인코딩을 설정 코드
+        response.setCharacterEncoding("UTF-8");
+
+        // void 일때 반환되는 값을 쓰고 싶을때 사용 (throws IOException, ServletException도 위에 기재해야한다)
+        response.getWriter().write("로그인을 완료했습니다.");
+
     }
 
     // 로그인 실패 처리

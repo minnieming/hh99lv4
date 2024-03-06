@@ -2,6 +2,7 @@ package com.sparta.hh99springlv4.teacher.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import com.sparta.hh99springlv4.lecture.entity.Lecture;
 import com.sparta.hh99springlv4.teacher.dto.TeacherRequestDto;
 import jakarta.persistence.*;
@@ -27,16 +28,19 @@ public class Teacher {
     private String teacherName;
 
     @Column(nullable = false)
-    private int career;
+    private int teacherCareer;
 
     @Column(nullable = false)
-    private String company;
+    private String teacherCompany;
 
     @Column(nullable = false, unique = true)
-    private String phone;
+    private String teacherPhone;
 
     @Column(nullable = false)
-    private String introduction;
+    private String teacherIntro;
+
+
+
 
     @OneToMany(mappedBy = "teacher")
     @JsonIgnore
@@ -54,11 +58,11 @@ public class Teacher {
 
 
     public Teacher(TeacherRequestDto teacherRequestDto) {
-        this.teacherName = teacherRequestDto.getTeacher_name();
-        this.career = teacherRequestDto.getCareer();
-        this.company = teacherRequestDto.getCompany();
-        this.phone = teacherRequestDto.getPhone();
-        this.introduction = teacherRequestDto.getIntroduction();
+        this.teacherName = teacherRequestDto.getTeacherName();
+        this.teacherCareer = teacherRequestDto.getTeacherCareer();
+        this.teacherCompany = teacherRequestDto.getTeacherCompany();
+        this.teacherPhone = teacherRequestDto.getTeacherPhone();
+        this.teacherIntro = teacherRequestDto.getTeacherIntro();
     }
 
 }

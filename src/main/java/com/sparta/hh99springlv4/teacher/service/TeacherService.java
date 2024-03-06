@@ -46,10 +46,10 @@ public class TeacherService {
         Teacher teacher = findTeacher(teacherId);
 
         // 강사 정보 수정
-        teacher.setCareer(teacherRequestDto.getCareer());
-        teacher.setCompany(teacherRequestDto.getCompany());
-        teacher.setPhone(teacherRequestDto.getPhone());
-        teacher.setIntroduction(teacherRequestDto.getIntroduction());
+        teacher.setTeacherCareer(teacherRequestDto.getTeacherCareer());
+        teacher.setTeacherCompany(teacherRequestDto.getTeacherCompany());
+        teacher.setTeacherPhone(teacherRequestDto.getTeacherPhone());
+        teacher.setTeacherIntro(teacherRequestDto.getTeacherIntro());
 
         // 변경된 강사 정보를 DB에 저장
         teacher = teacherRepository.save(teacher);
