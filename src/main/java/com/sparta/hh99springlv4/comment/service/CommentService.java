@@ -45,12 +45,13 @@
 //                .orElseThrow(() -> new NotFoundException("해당 댓글은 존재하지 않습니다."));
 //
 //        // 2. 조회한 댓글이 선택한 강의의 댓글인지 확인
+//        // 서비스상 해당 댓글이 선택한 강의의 댓글인지 확인하는 건 덜 중요할 수도
 //        if (!comment.getLecture().getId().equals(lectureId)) {
 //            throw new NotFoundException("해당 강의의 댓글이 아닙니다.");
 //        }
 //
 //        // 3. 댓글을 작성한 사용자와 현재 로그인한 사용자가 일치하는지 확인
-//        if (!comment.getUser().getId().equals(userDetails.getId())) {
+//        if (!comment.getUser().getId().equals(userDetails.getUser().getId())) {
 //            throw new UnauthorizedException("본인이 작성한 댓글만 수정할 수 있습니다.");
 //        }
 //

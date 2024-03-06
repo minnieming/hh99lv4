@@ -25,41 +25,44 @@ public class Teacher {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String teacher_name;
+    private String teacherName;
 
     @Column(nullable = false)
-    private int career;
+    private int teacherCareer;
 
     @Column(nullable = false)
-    private String company;
+    private String teacherCompany;
 
     @Column(nullable = false, unique = true)
-    private String phone;
+    private String teacherPhone;
 
     @Column(nullable = false)
-    private String introduction;
+    private String teacherIntro;
+
+
+
 
     @OneToMany(mappedBy = "teacher")
     @JsonIgnore
     private List<Lecture> lectureList = new ArrayList<>();
 
-    public void addLectureList(Lecture lecture) {
-        this.lectureList.add(lecture);
-        lecture.setTeacher(this);
-    }
-
-    // 추가된 생성자
-    public Teacher(Long id) {
-        this.id = id;
-    }
+//    public void addLectureList(Lecture lecture) {
+//        this.lectureList.add(lecture);
+//        lecture.setTeacher(this);
+//    }
+//
+//    // 추가된 생성자
+//    public Teacher(Long id) {
+//        this.id = id;
+//    }
 
 
     public Teacher(TeacherRequestDto teacherRequestDto) {
-        this.teacher_name = teacherRequestDto.getTeacher_name();
-        this.career = teacherRequestDto.getCareer();
-        this.company = teacherRequestDto.getCompany();
-        this.phone = teacherRequestDto.getPhone();
-        this.introduction = teacherRequestDto.getIntroduction();
+        this.teacherName = teacherRequestDto.getTeacherName();
+        this.teacherCareer = teacherRequestDto.getTeacherCareer();
+        this.teacherCompany = teacherRequestDto.getTeacherCompany();
+        this.teacherPhone = teacherRequestDto.getTeacherPhone();
+        this.teacherIntro = teacherRequestDto.getTeacherIntro();
     }
 
 }
