@@ -1,3 +1,6 @@
+### 제외 대상 추가
+application.properties
+
 HELP.md
 .gradle
 build/

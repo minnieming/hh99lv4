@@ -1,7 +1,6 @@
 package com.sparta.hh99springlv4.lecture.service;
 
 
-import com.sparta.hh99springlv4.comment.dto.CommentResponseDto;
 import com.sparta.hh99springlv4.lecture.dto.LectureRequestDto;
 import com.sparta.hh99springlv4.lecture.dto.LectureResponseDto;
 import com.sparta.hh99springlv4.lecture.entity.CategoryEnum;

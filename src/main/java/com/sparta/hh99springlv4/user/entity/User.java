@@ -1,5 +1,6 @@
 package com.sparta.hh99springlv4.user.entity;
 
+import com.sparta.hh99springlv4.user.dto.SignupRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,12 +35,12 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     private UserRoleEnum role;
 
-    public User(String userEmail, String userPassword, String userGender, String userPhone, String userAddress, UserRoleEnum role) {
-        this.userEmail = userEmail;
+    public User(SignupRequestDto signupRequestDto, String userPassword, UserRoleEnum role) {
+        this.userEmail = signupRequestDto.getUserEmail();
         this.userPassword = userPassword;
-        this.userGender = userGender;
-        this.userPhone = userPhone;
-        this.userAddress = userAddress;
+        this.userGender = signupRequestDto.getUserGender();
+        this.userPhone = signupRequestDto.getUserPhone();
+        this.userAddress = signupRequestDto.getUserAddress();
         this.role = role;
     }
 }
