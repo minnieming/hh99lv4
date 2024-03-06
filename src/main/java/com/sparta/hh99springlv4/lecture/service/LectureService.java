@@ -44,7 +44,7 @@ public class LectureService {
 
         return lectureResponseDto;
     }
-
+//
 
     // 선택한 강의 정보 수정
     public LectureResponseDto infoLecture(Long lectureId, LectureRequestDto lectureRequestDto) {
