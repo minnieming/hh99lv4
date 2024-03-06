@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -65,11 +66,33 @@ public class LectureService {
     }
 
 
-    // 강의 조회 메서드
+    // 강의 조회 메서드 + 선택한 강의를 조회할 때 해당 강의에 등록된 댓글들도 함께 조회할 수 있습니다.
     private Lecture findLecture(Long lectureId) {
         return lectureRepository.findById(lectureId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 강의는 존재하지 않습니다."));
+
     }
+
+//    public LectureCommentDto findLectureComment(Long lectureId) {
+//        // 강의 정보 조회
+//        Lecture lecture = lectureRepository.findById(lectureId)
+//                .orElseThrow(() -> new NotFoundException("해당 강의는 존재하지 않습니다."));
+//
+//        // 해당 강의에 등록된 댓글 목록 조회
+//        List<CommentDto> commentDtos = lecture.getComments().stream()
+//                .map(comment -> new CommentDto(comment.getContent(), comment.getAuthor()))
+//                .collect(Collectors.toList());
+//
+//        // LectureWithCommentsDto 객체 생성 및 설정
+//        LectureDto lectureDto = new LectureDto(lecture.getTitle(), lecture.getInstructor());
+//        LectureWithCommentsDto lectureWithCommentsDto = new LectureWithCommentsDto();
+//        lectureWithCommentsDto.setLecture(lectureDto);
+//        lectureWithCommentsDto.setComments(commentDtos);
+//
+//        return lectureWithCommentsDto;
+//    }
+
+
 
 
     // 선택한 강의 조회

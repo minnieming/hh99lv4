@@ -61,7 +61,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         // 로그인 성공 메시지를 로그에 출력
         log.info("사용자 '{}'의 로그인 성공", email);
-
     }
 
     // 로그인 실패 처리
@@ -72,8 +71,5 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         // 로그인 실패 메시지를 로그에 출력
         log.info("로그인 실패: {}", failed.getMessage());
-
     }
-
 }
-//

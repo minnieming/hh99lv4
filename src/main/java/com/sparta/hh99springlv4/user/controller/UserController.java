@@ -26,18 +26,6 @@ public class UserController {
 
     private final UserService userService;
 
-    // 로그인 페이지
-    @GetMapping("/user/login-page")
-    public String loginPage() {
-        return "login";
-    }
-
-    // 회원가입 페이지
-    @GetMapping("/user/signup")
-    public String signupPage() {
-        return "signup";
-    }
-
     // 회원 가입
     @PostMapping("/user/signup")
     public ResponseEntity<SignupResponseDto> signup(@Valid @RequestBody SignupRequestDto requestDto, BindingResult bindingResult) {

@@ -7,6 +7,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+
+/// 이거 필요한 클래스인지 확인해주깅 !
+
 @Getter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)  // 자동으로 시간을 넣어줌

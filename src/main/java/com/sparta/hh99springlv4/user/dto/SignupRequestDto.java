@@ -16,8 +16,6 @@ public class SignupRequestDto {
     @NotBlank
     private String password;
 
-    @NotBlank
-    private String department;
 
     @NotBlank
     private String auth;

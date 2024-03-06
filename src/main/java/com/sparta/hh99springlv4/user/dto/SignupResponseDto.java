@@ -35,7 +35,6 @@ public class SignupResponseDto {
     public SignupResponseDto(User user) {
         this.email = user.getEmail();
         this.password = user.getPassword();
-        this.department = user.getDepartment();
         this.role = user.getRole();
     }
 }

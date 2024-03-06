@@ -16,30 +16,32 @@ public class User {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String email;
+    private String userEmail;
 
     @Column(nullable = false)
-    private String password;
+    private String userPassword;
 
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING) // Enum 값과 매핑
-    private DepartmentEnum department;
+    private String userGender;
 
-//    @Column(nullable = false)
-//    private String auth;
+    @Column(nullable = false)
+    private String userPhone;
+
+    @Column(nullable = false)
+    private String userAddress;
 
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private UserRoleEnum role;
 
-    public User(String email, String password, DepartmentEnum selectedDepartmentString, UserRoleEnum role) {
-        this.email = email;
-        this.password = password;
-        this.department = selectedDepartmentString;
+    public User(String userEmail, String userPassword, String userGender, String userPhone, String userAddress, UserRoleEnum role) {
+        this.userEmail = userEmail;
+        this.userPassword = userPassword;
+        this.userGender = userGender;
+        this.userPhone = userPhone;
+        this.userAddress = userAddress;
         this.role = role;
     }
-
-
 }
 
 

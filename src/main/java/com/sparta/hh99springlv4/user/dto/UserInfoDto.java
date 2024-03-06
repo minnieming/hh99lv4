@@ -3,6 +3,8 @@ package com.sparta.hh99springlv4.user.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+
+/// 이거 필요한 클래스인지 확인해주깅 !
 @Getter
 @AllArgsConstructor
 public class UserInfoDto {
@@ -10,7 +12,6 @@ public class UserInfoDto {
 
     private String password;
 
-    private String department;
 
     private String auth;
 
