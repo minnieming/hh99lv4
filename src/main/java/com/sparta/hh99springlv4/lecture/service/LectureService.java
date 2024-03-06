@@ -3,6 +3,7 @@ package com.sparta.hh99springlv4.lecture.service;
 
 import com.sparta.hh99springlv4.lecture.dto.LectureRequestDto;
 import com.sparta.hh99springlv4.lecture.dto.LectureResponseDto;
+import com.sparta.hh99springlv4.lecture.dto.LectureTeacherResponseDto;
 import com.sparta.hh99springlv4.lecture.entity.CategoryEnum;
 import com.sparta.hh99springlv4.lecture.entity.Lecture;
 import com.sparta.hh99springlv4.lecture.repository.LectureRepository;
@@ -46,28 +47,45 @@ public class LectureService {
         return lectureResponseDto;
     }
 
-    // 선택한 강의 정보 기능
-    public LectureResponseDto selectLecture(LectureRequestDto lectureRequestDto) {
+    // 선택한 강의 조회 기능
+    public LectureTeacherResponseDto selectLecture(LectureRequestDto lectureRequestDto) {
 
-        // 받아온 강의 이름으로 repository에서 다른 정보 찾아오기
-        // lectureRequestDto -> Entity
         Lecture lecture = lectureRepository.findByLectureName(lectureRequestDto.getLectureName());
-        // Entity -> Repository 저장
-        Lecture lectureInfo = lectureRepository.save(lecture);
 
-        // 받아온 정보를 반환값으로 주기 & 선생님 정보도 같이 주기 (전화번호는 제외)
-        // Entity -> Response
-        LectureResponseDto lectureResponseDto = new LectureResponseDto(lectureInfo);
+        Teacher teacher = lecture.getTeacher();
 
+        return new LectureTeacherResponseDto(lecture);
 
+//        -------------------------- LectureResponseDto에 같이 넣어서 가져오는 방법 (두개를 따로 반환도 되나?) ------------------------------
+//        // 받아온 강의 이름으로 repository에서 다른 정보 찾아오기
 //        // lectureRequestDto -> Entity
-//        Teacher teacher = teacherRepository.findByTeacherName(lectureRequestDto.getTeacherName());
-//        Teacher teacherInfo = new Teacher(teacher);
+//        Lecture lecture = lectureRepository.findByLectureName(lectureRequestDto.getLectureName());
+//
+//        // Entity -> Repository 저장 (등록 할때만?)
+////        Lecture lectureInfo = lectureRepository.save(lecture);
+//
+//        // 받아온 정보를 반환값으로 주기 & 선생님 정보도 같이 주기 (전화번호는 제외)
+//        // Entity -> Response
+////        LectureResponseDto lectureResponseDto = new LectureResponseDto(lectureInfo);
+//
+//        // lectureRequestDto로 들어왔으니까 여기서 가져온다
+//        Teacher teacher = lecture.getTeacher();
+//
+//        TeacherResponseDto teacherResponseDto = new TeacherResponseDto(
+//                teacher.getTeacherName(),
+//                teacher.getTeacherCareer(),
+//                teacher.getTeacherCompany(),
+//                teacher.getTeacherIntro()
+//        );
+//
+////        Lecture lecture = lectureRepository.findByLectureName(lectureRequestDto.getLectureName());
+//
+//        LectureResponseDto lectureResponseDto = new LectureResponseDto(lecture);
+//
+//        return new LectureResponseDto(lecture).setTeacher(teacherResponseDto);
+//
+////        return lectureResponseDto;
 
-        // Entity -> Response | teacherName = lectureRequestDto
-
-
-        return lectureResponseDto;
     }
 
 

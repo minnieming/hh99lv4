@@ -2,8 +2,10 @@ package com.sparta.hh99springlv4.lecture.controller;
 
 import com.sparta.hh99springlv4.lecture.dto.LectureRequestDto;
 import com.sparta.hh99springlv4.lecture.dto.LectureResponseDto;
+import com.sparta.hh99springlv4.lecture.dto.LectureTeacherResponseDto;
 import com.sparta.hh99springlv4.lecture.entity.CategoryEnum;
 import com.sparta.hh99springlv4.lecture.service.LectureService;
+import com.sparta.hh99springlv4.teacher.dto.TeacherRequestDto;
 import com.sparta.hh99springlv4.user.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -38,11 +40,11 @@ public class LectureController {
 
     // 선택한 강의 조회
     @GetMapping("/select/lecture")
-    public LectureResponseDto selectLecture(@RequestBody LectureRequestDto lectureRequestDto) {
+    public LectureTeacherResponseDto selectLecture(@RequestBody LectureRequestDto lectureRequestDto) {
 
-        LectureResponseDto lectureResponseDto = lectureService.selectLecture(lectureRequestDto);
+        LectureTeacherResponseDto lectureTeacherResponseDto = lectureService.selectLecture(lectureRequestDto);
 
-        return lectureResponseDto;
+        return lectureTeacherResponseDto;
     }
 
     // 선택한 강의 정보 수정
