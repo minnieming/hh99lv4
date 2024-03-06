@@ -1,7 +1,7 @@
 package com.sparta.hh99springlv4.teacher.dto;
 
-import com.sparta.springlv3.lecture.entity.Lecture;
-import com.sparta.springlv3.teacher.entity.Teacher;
+import com.sparta.hh99springlv4.lecture.entity.Lecture;
+import com.sparta.hh99springlv4.teacher.entity.Teacher;
 import lombok.Getter;
 
 @Getter
@@ -13,7 +13,7 @@ public class TeacherResponseDto {
     private String introduction; //소개
 
     public TeacherResponseDto(Teacher teacher) {
-        this.teacher_name = teacher.getTeacher_name();
+        this.teacher_name = teacher.getTeacherName();
         this.career = teacher.getCareer();
         this.company = teacher.getCompany();
         this.phone = teacher.getPhone();
@@ -21,7 +21,7 @@ public class TeacherResponseDto {
     }
 
     public TeacherResponseDto (Lecture lecture) {
-        this.teacher_name = lecture.getTeacher().getTeacher_name();
+        this.teacher_name = lecture.getTeacher().getTeacherName();
         this.career = lecture.getTeacher().getCareer();
         this.company = lecture.getTeacher().getCompany();
         this.phone = lecture.getTeacher().getPhone();

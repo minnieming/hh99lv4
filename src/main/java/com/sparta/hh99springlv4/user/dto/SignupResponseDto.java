@@ -1,8 +1,8 @@
 package com.sparta.hh99springlv4.user.dto;
 
-import com.sparta.springlv3.user.entity.DepartmentEnum;
-import com.sparta.springlv3.user.entity.User;
-import com.sparta.springlv3.user.entity.UserRoleEnum;
+import com.sparta.hh99springlv4.user.entity.DepartmentEnum;
+import com.sparta.hh99springlv4.user.entity.User;
+import com.sparta.hh99springlv4.user.entity.UserRoleEnum;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

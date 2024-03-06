@@ -1,13 +1,13 @@
 package com.sparta.hh99springlv4.teacher.service;
 
 
-import com.sparta.springlv3.lecture.dto.LectureResponseDto;
-import com.sparta.springlv3.lecture.entity.Lecture;
-import com.sparta.springlv3.lecture.repository.LectureRepository;
-import com.sparta.springlv3.teacher.dto.TeacherRequestDto;
-import com.sparta.springlv3.teacher.dto.TeacherResponseDto;
-import com.sparta.springlv3.teacher.entity.Teacher;
-import com.sparta.springlv3.teacher.repository.TeacherRepository;
+import com.sparta.hh99springlv4.lecture.dto.LectureResponseDto;
+import com.sparta.hh99springlv4.lecture.entity.Lecture;
+import com.sparta.hh99springlv4.lecture.repository.LectureRepository;
+import com.sparta.hh99springlv4.teacher.dto.TeacherRequestDto;
+import com.sparta.hh99springlv4.teacher.dto.TeacherResponseDto;
+import com.sparta.hh99springlv4.teacher.entity.Teacher;
+import com.sparta.hh99springlv4.teacher.repository.TeacherRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

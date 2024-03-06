@@ -1,7 +1,7 @@
 package com.sparta.hh99springlv4.lecture.entity;
 
-import com.sparta.springlv3.lecture.dto.LectureRequestDto;
-import com.sparta.springlv3.teacher.entity.Teacher;
+import com.sparta.hh99springlv4.lecture.dto.LectureRequestDto;
+import com.sparta.hh99springlv4.teacher.entity.Teacher;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -47,9 +47,6 @@ public class Lecture {
         this.introL = lectureRequestDto.getIntroL();
         this.category = CategoryEnum.valueOf(lectureRequestDto.getCategory());
         this.registrationDate = LocalDate.now();
-
-        this.teacher = lectureRequestDto.getTeacher();
-
 
     }
 

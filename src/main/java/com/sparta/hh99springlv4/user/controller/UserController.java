@@ -1,10 +1,10 @@
 package com.sparta.hh99springlv4.user.controller;
 
-import com.sparta.springlv3.user.dto.*;
-import com.sparta.springlv3.user.exception.NotFoundException;
-import com.sparta.springlv3.user.exception.UnauthorizedException;
-import com.sparta.springlv3.user.security.UserDetailsImpl;
-import com.sparta.springlv3.user.service.UserService;
+import com.sparta.hh99springlv4.user.dto.*;
+import com.sparta.hh99springlv4.user.exception.NotFoundException;
+import com.sparta.hh99springlv4.user.exception.UnauthorizedException;
+import com.sparta.hh99springlv4.user.security.UserDetailsImpl;
+import com.sparta.hh99springlv4.user.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

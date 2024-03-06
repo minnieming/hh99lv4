@@ -1,11 +1,13 @@
 package com.sparta.hh99springlv4.lecture.service;
 
 
-import com.sparta.springlv3.lecture.dto.LectureRequestDto;
-import com.sparta.springlv3.lecture.dto.LectureResponseDto;
-import com.sparta.springlv3.lecture.entity.CategoryEnum;
-import com.sparta.springlv3.lecture.entity.Lecture;
-import com.sparta.springlv3.lecture.repository.LectureRepository;
+import com.sparta.hh99springlv4.lecture.dto.LectureRequestDto;
+import com.sparta.hh99springlv4.lecture.dto.LectureResponseDto;
+import com.sparta.hh99springlv4.lecture.entity.CategoryEnum;
+import com.sparta.hh99springlv4.lecture.entity.Lecture;
+import com.sparta.hh99springlv4.lecture.repository.LectureRepository;
+import com.sparta.hh99springlv4.teacher.entity.Teacher;
+import com.sparta.hh99springlv4.teacher.repository.TeacherRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,14 +20,20 @@ import java.util.List;
 public class LectureService {
 
     private final LectureRepository lectureRepository;
+    private final TeacherRepository teacherRepository;
 
     // 강의 등록 기능
     @Transactional
     public LectureResponseDto createLecture(LectureRequestDto lectureRequestDto) {
 
+        Teacher teacher = teacherRepository.findByTeacherName(lectureRequestDto.getTeacher());
+        if (teacher == null) {
+            throw new IllegalArgumentException("해당 선생님을 찾지 못했습니다");
+        }
 
         // RequestDto -> Entity
         Lecture lecture = new Lecture(lectureRequestDto);
+        lecture.setTeacher(teacher);
 
         // DB에 저장
         Lecture saveLecture = lectureRepository.save(lecture);
