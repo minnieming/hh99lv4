@@ -8,11 +8,11 @@ import java.time.LocalDate;
 @Getter
 public class LectureRequestDto {
     private String lectureName; //강의명
-    private Long price; //가격
-    private String introL; //소개
-    private String category; //카테고리
-    private LocalDate registrationDate; //등록일
-    private String teacher; //강사이름
+    private Long lecturePrice; //가격
+    private String lectureIntro; //소개
+    private String lectureCategory; //카테고리
+    private LocalDate lectureRegistrationDate; //등록일
+    private String teacherName; //강사이름
 
 
 }

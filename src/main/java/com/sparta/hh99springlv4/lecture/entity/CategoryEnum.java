@@ -8,15 +8,15 @@ public enum CategoryEnum {
 
 
 
-    private final String category;
+    private final String lectureCategory;
 
-    CategoryEnum (String category) {
+    CategoryEnum (String lectureCategory) {
 
-        this.category = category;
+        this.lectureCategory = lectureCategory;
     }
 
-    public String getCategory() {
-        return this.category;
+    public String getLectureCategory() {
+        return this.lectureCategory;
     }
 
     public static class Category {

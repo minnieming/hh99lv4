@@ -10,18 +10,18 @@ import java.time.LocalDate;
 @Getter
 public class LectureResponseDto {
     private String lectureName; //강의명
-    private Long price; //가격
-    private String introL; //소개
-    private CategoryEnum category; // 카테고리
-    private LocalDate registrationDate;
-    private String teacher; //강사이름
+    private Long lecturePrice; //가격
+    private String lectureIntro; //소개
+    private CategoryEnum lectureCategory; // 카테고리
+    private LocalDate lectureRegistrationDate;
+    private String teacherName; //강사이름
 
     public LectureResponseDto(Lecture lecture) {
         this.lectureName = lecture.getLectureName();
-        this.price = lecture.getPrice();
-        this.introL = lecture.getIntroL();
-        this.category = lecture.getCategory();
-        this.registrationDate = lecture.getRegistrationDate();
-        this.teacher = lecture.getTeacher().getTeacherName();
+        this.lecturePrice = lecture.getLecturePrice();
+        this.lectureIntro = lecture.getLectureIntro();
+        this.lectureCategory = lecture.getLectureCategory();
+        this.lectureRegistrationDate = lecture.getLectureRegistrationDate();
+        this.teacherName = lecture.getTeacher().getTeacherName();
     }
 }

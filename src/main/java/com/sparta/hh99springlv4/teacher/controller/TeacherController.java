@@ -26,17 +26,10 @@ public class TeacherController {
     // 강사 등록
     @Secured(UserRoleEnum.Authority.ADMIN)
     @PostMapping("/teacher")
-    public ResponseEntity<?> createTeacher(@RequestBody TeacherRequestDto teacherRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public ResponseEntity<?> createTeacher(@RequestBody TeacherRequestDto teacherRequestDto) {
 
-        // 로그인한 사용자가 관리자(매니저, 스태프)인지 확인
-//        if (userDetails != null
-//                && userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))
-//                || userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_USER"))) {
-//            return teacherService.createTeacher(teacherRequestDto);
-//        }
-//        throw new IllegalArgumentException("관리자가 아닙니다. 강사를 등록할 수 없습니다.");
-//    }
         TeacherResponseDto teacherResponseDto = teacherService.createTeacher(teacherRequestDto);
+
         return ResponseEntity.ok(teacherResponseDto);
     }
 
