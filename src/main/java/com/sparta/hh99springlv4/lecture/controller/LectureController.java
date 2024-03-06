@@ -37,15 +37,13 @@ public class LectureController {
     }
 
     // 선택한 강의 조회
-//    @GetMapping("/select/lecture/{lectureId}")
-//    public LectureResponseDto updateLecture(@PathVariable Long lectureId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-//        if (userDetails != null
-//                && userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))
-//                || userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_USER"))) {
-//            return lectureService.updateLecture(lectureId);
-//        }
-//        throw new IllegalArgumentException("관리자가 아닙니다. 선택한 강사를 조회 할 수 없습니다.");
-//    }
+    @GetMapping("/select/lecture")
+    public LectureResponseDto selectLecture(@RequestBody LectureRequestDto lectureRequestDto) {
+
+        LectureResponseDto lectureResponseDto = lectureService.selectLecture(lectureRequestDto);
+
+        return lectureResponseDto;
+    }
 
     // 선택한 강의 정보 수정
 //    @PutMapping("/lectureinfo/{lectureId}")

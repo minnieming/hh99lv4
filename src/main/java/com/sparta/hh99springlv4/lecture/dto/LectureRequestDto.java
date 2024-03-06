@@ -2,10 +2,12 @@ package com.sparta.hh99springlv4.lecture.dto;
 
 import com.sparta.hh99springlv4.teacher.entity.Teacher;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Getter
+@Setter
 public class LectureRequestDto {
     private String lectureName; //강의명
     private Long lecturePrice; //가격

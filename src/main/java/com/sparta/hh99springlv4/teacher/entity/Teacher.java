@@ -40,7 +40,7 @@ public class Teacher {
     private String teacherIntro;
 
     @OneToMany(mappedBy = "teacher")
-    @JsonIgnore
+//    @JsonIgnore
     private List<Lecture> lectureList = new ArrayList<>();
 
 //    public void addLectureList(Lecture lecture) {
@@ -61,5 +61,6 @@ public class Teacher {
         this.teacherPhone = teacherRequestDto.getTeacherPhone();
         this.teacherIntro = teacherRequestDto.getTeacherIntro();
     }
+
 
 }

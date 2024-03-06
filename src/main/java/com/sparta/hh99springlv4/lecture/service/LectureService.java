@@ -6,6 +6,7 @@ import com.sparta.hh99springlv4.lecture.dto.LectureResponseDto;
 import com.sparta.hh99springlv4.lecture.entity.CategoryEnum;
 import com.sparta.hh99springlv4.lecture.entity.Lecture;
 import com.sparta.hh99springlv4.lecture.repository.LectureRepository;
+import com.sparta.hh99springlv4.teacher.dto.TeacherResponseDto;
 import com.sparta.hh99springlv4.teacher.entity.Teacher;
 import com.sparta.hh99springlv4.teacher.repository.TeacherRepository;
 import lombok.RequiredArgsConstructor;
@@ -44,7 +45,52 @@ public class LectureService {
 
         return lectureResponseDto;
     }
+
+    // 선택한 강의 정보 기능
+    public LectureResponseDto selectLecture(LectureRequestDto lectureRequestDto) {
+
+        // 받아온 강의 이름으로 repository에서 다른 정보 찾아오기
+        // lectureRequestDto -> Entity
+        Lecture lecture = lectureRepository.findByLectureName(lectureRequestDto.getLectureName());
+        // Entity -> Repository 저장
+        Lecture lectureInfo = lectureRepository.save(lecture);
+
+        // 받아온 정보를 반환값으로 주기 & 선생님 정보도 같이 주기 (전화번호는 제외)
+        // Entity -> Response
+        LectureResponseDto lectureResponseDto = new LectureResponseDto(lectureInfo);
+
+
+//        // lectureRequestDto -> Entity
+//        Teacher teacher = teacherRepository.findByTeacherName(lectureRequestDto.getTeacherName());
+//        Teacher teacherInfo = new Teacher(teacher);
+
+        // Entity -> Response | teacherName = lectureRequestDto
+
+
+        return lectureResponseDto;
+    }
+
+
+//    public LectureCommentDto findLectureComment(Long lectureId) {
+//        // 강의 정보 조회
+//        Lecture lecture = lectureRepository.findById(lectureId)
+//                .orElseThrow(() -> new NotFoundException("해당 강의는 존재하지 않습니다."));
 //
+//        // 해당 강의에 등록된 댓글 목록 조회
+//        List<CommentDto> commentDtos = lecture.getComments().stream()
+//                .map(comment -> new CommentDto(comment.getContent(), comment.getAuthor()))
+//                .collect(Collectors.toList());
+//
+//        // LectureWithCommentsDto 객체 생성 및 설정
+//        LectureDto lectureDto = new LectureDto(lecture.getTitle(), lecture.getInstructor());
+//        LectureWithCommentsDto lectureWithCommentsDto = new LectureWithCommentsDto();
+//        lectureWithCommentsDto.setLecture(lectureDto);
+//        lectureWithCommentsDto.setComments(commentDtos);
+//
+//        return lectureWithCommentsDto;
+//    }
+
+
 
     // 선택한 강의 정보 수정
 //    public LectureResponseDto infoLecture(Long lectureId, LectureRequestDto lectureRequestDto) {
@@ -73,25 +119,7 @@ public class LectureService {
 //
 //    }
 //
-////    public LectureCommentDto findLectureComment(Long lectureId) {
-////        // 강의 정보 조회
-////        Lecture lecture = lectureRepository.findById(lectureId)
-////                .orElseThrow(() -> new NotFoundException("해당 강의는 존재하지 않습니다."));
-////
-////        // 해당 강의에 등록된 댓글 목록 조회
-////        List<CommentDto> commentDtos = lecture.getComments().stream()
-////                .map(comment -> new CommentDto(comment.getContent(), comment.getAuthor()))
-////                .collect(Collectors.toList());
-////
-////        // LectureWithCommentsDto 객체 생성 및 설정
-////        LectureDto lectureDto = new LectureDto(lecture.getTitle(), lecture.getInstructor());
-////        LectureWithCommentsDto lectureWithCommentsDto = new LectureWithCommentsDto();
-////        lectureWithCommentsDto.setLecture(lectureDto);
-////        lectureWithCommentsDto.setComments(commentDtos);
-////
-////        return lectureWithCommentsDto;
-////    }
-//
+
 ////
 //
 //
