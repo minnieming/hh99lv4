@@ -1,6 +1,8 @@
 package com.sparta.hh99springlv4.lecture.service;
 
 
+import com.sparta.hh99springlv4.comment.entity.Comment;
+import com.sparta.hh99springlv4.comment.repository.CommentRepository;
 import com.sparta.hh99springlv4.lecture.dto.LectureRequestDto;
 import com.sparta.hh99springlv4.lecture.dto.LectureResponseDto;
 import com.sparta.hh99springlv4.lecture.dto.LectureTeacherResponseDto;
@@ -24,6 +26,7 @@ public class LectureService {
 
     private final LectureRepository lectureRepository;
     private final TeacherRepository teacherRepository;
+    private final CommentRepository commentRepository;
 
     // 강의 등록 기능
     @Transactional
@@ -50,11 +53,25 @@ public class LectureService {
     // 선택한 강의 조회 기능
     public LectureTeacherResponseDto selectLecture(LectureRequestDto lectureRequestDto) {
 
+        // 강의 조회
         Lecture lecture = lectureRepository.findByLectureName(lectureRequestDto.getLectureName());
+        if(lecture == null) {
+            throw new IllegalArgumentException("강의를 찾지 못했습니다");
+        }
 
+        // 강사 조회
         Teacher teacher = lecture.getTeacher();
 
-        return new LectureTeacherResponseDto(lecture);
+        // 댓글 조회
+        List<Comment> comments = commentRepository.findByLecture_LectureName(lectureRequestDto.getLectureName());
+        if (comments.isEmpty()) {
+            throw new IllegalArgumentException("해당 댓글을 찾지 못했습니다");
+        }
+
+//        Lecture selectList = new Lecture(lectureRequestDto);
+//        lecture.setCommentList(comment);
+
+        return new LectureTeacherResponseDto(lecture, comments);
 
 //        -------------------------- LectureResponseDto에 같이 넣어서 가져오는 방법 (두개를 따로 반환도 되나?) ------------------------------
 //        // 받아온 강의 이름으로 repository에서 다른 정보 찾아오기
@@ -88,6 +105,7 @@ public class LectureService {
 
     }
 
+    // 카테고리별 강의 목록 조회
     public List<LectureResponseDto> findCategoryLecture(LectureRequestDto lectureRequestDto) {
 
         // entity에 넣어줄 리스트 타입의 생성자를 호출한다.
