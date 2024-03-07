@@ -47,8 +47,9 @@ public class Lecture {
         this.lectureName = lectureRequestDto.getLectureName();
         this.lecturePrice = lectureRequestDto.getLecturePrice();
         this.lectureIntro = lectureRequestDto.getLectureIntro();
-        this.lectureCategory = CategoryEnum.valueOf(lectureRequestDto.getLectureCategory());
-        this.lectureRegistrationDate = LocalDate.now();
+        this.lectureCategory = CategoryEnum.valueOf(String.valueOf(lectureRequestDto.getLectureCategory()));
+//        this.lectureRegistrationDate = LocalDate.now();
+        this.lectureRegistrationDate = lectureRequestDto.getLectureRegistrationDate();
     }
 
 }

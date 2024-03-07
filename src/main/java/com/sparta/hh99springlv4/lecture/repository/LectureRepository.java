@@ -4,10 +4,12 @@ import com.sparta.hh99springlv4.lecture.entity.CategoryEnum;
 import com.sparta.hh99springlv4.lecture.entity.Lecture;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.util.List;
 import java.util.Optional;
 
+@EnableJpaRepositories
 public interface LectureRepository extends JpaRepository<Lecture, Long> {
 
     // teacher에서 사용중.
@@ -17,6 +19,18 @@ public interface LectureRepository extends JpaRepository<Lecture, Long> {
 
 //    List<Lecture> findByCategory(CategoryEnum category);
     Lecture findByLectureName(String lectureName);
+
+    // 강의몀
+    List<Lecture> findAllByLectureCategoryOrderByLectureNameAsc(CategoryEnum lectureCategory);
+    List<Lecture> findAllByLectureCategoryOrderByLectureNameDesc(CategoryEnum lectureCategory);
+
+    // 가격
+    List<Lecture> findAllByLectureCategoryOrderByLecturePriceAsc(CategoryEnum lectureCategory);
+    List<Lecture> findAllByLectureCategoryOrderByLecturePriceDesc(CategoryEnum lectureCategory);
+
+    // 등록일
+    List<Lecture> findAllByLectureCategoryOrderByLectureRegistrationDateAsc(CategoryEnum lectureCategory);
+    List<Lecture> findAllByLectureCategoryOrderByLectureRegistrationDateDesc(CategoryEnum lectureCategory);
 
 //    Optional<Lecture> findByLectureId(Long lectureId);
 }

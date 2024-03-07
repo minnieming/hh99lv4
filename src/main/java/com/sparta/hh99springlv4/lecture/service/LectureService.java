@@ -7,16 +7,16 @@ import com.sparta.hh99springlv4.lecture.dto.LectureTeacherResponseDto;
 import com.sparta.hh99springlv4.lecture.entity.CategoryEnum;
 import com.sparta.hh99springlv4.lecture.entity.Lecture;
 import com.sparta.hh99springlv4.lecture.repository.LectureRepository;
-import com.sparta.hh99springlv4.teacher.dto.TeacherResponseDto;
 import com.sparta.hh99springlv4.teacher.entity.Teacher;
 import com.sparta.hh99springlv4.teacher.repository.TeacherRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static java.util.Arrays.stream;
 
 @Service
 @RequiredArgsConstructor
@@ -88,78 +88,41 @@ public class LectureService {
 
     }
 
+    public List<LectureResponseDto> findCategoryLecture(LectureRequestDto lectureRequestDto) {
 
-//    public LectureCommentDto findLectureComment(Long lectureId) {
-//        // 강의 정보 조회
-//        Lecture lecture = lectureRepository.findById(lectureId)
-//                .orElseThrow(() -> new NotFoundException("해당 강의는 존재하지 않습니다."));
-//
-//        // 해당 강의에 등록된 댓글 목록 조회
-//        List<CommentDto> commentDtos = lecture.getComments().stream()
-//                .map(comment -> new CommentDto(comment.getContent(), comment.getAuthor()))
-//                .collect(Collectors.toList());
-//
-//        // LectureWithCommentsDto 객체 생성 및 설정
-//        LectureDto lectureDto = new LectureDto(lecture.getTitle(), lecture.getInstructor());
-//        LectureWithCommentsDto lectureWithCommentsDto = new LectureWithCommentsDto();
-//        lectureWithCommentsDto.setLecture(lectureDto);
-//        lectureWithCommentsDto.setComments(commentDtos);
-//
-//        return lectureWithCommentsDto;
-//    }
+        // entity에 넣어줄 리스트 타입의 생성자를 호출한다.
+        List<Lecture> lectures = null;
 
+        // 강의명, 가격, 등록일을 기준으로 내림차순, 오름차순을 선택
+        // -> 하나씩 받아서 쿼리문 + if 문 조합으로 사용
+        if (lectureRequestDto.isName() && lectureRequestDto.isAsc()) {
+            lectures = lectureRepository.findAllByLectureCategoryOrderByLectureNameAsc(lectureRequestDto.getLectureCategory());
+        } else if (lectureRequestDto.isName() && lectureRequestDto.isDesc()) {
+            lectures = lectureRepository.findAllByLectureCategoryOrderByLectureNameDesc(lectureRequestDto.getLectureCategory());
+        }
 
+        if (lectureRequestDto.isPrice() && lectureRequestDto.isAsc()) {
+            lectures = lectureRepository.findAllByLectureCategoryOrderByLecturePriceAsc(lectureRequestDto.getLectureCategory());
+        } else if (lectureRequestDto.isPrice() && lectureRequestDto.isDesc()) {
+            lectures = lectureRepository.findAllByLectureCategoryOrderByLecturePriceDesc(lectureRequestDto.getLectureCategory());
+        }
 
-    // 선택한 강의 정보 수정
-//    public LectureResponseDto infoLecture(Long lectureId, LectureRequestDto lectureRequestDto) {
-//
-//        // 선택한 강의 정보 조회
-//        Lecture lecture = findLecture(lectureId);
-//
-//        // 강의 정보 수정
-////        lecture.setLectureName(lectureRequestDto.getLectureName());
-////        lecture.setPrice(lectureRequestDto.getPrice());
-////        lecture.setIntroL(lectureRequestDto.getIntroL());
-////        lecture.setCategory(CategoryEnum.valueOf(lectureRequestDto.getCategory())); // 카테고리 수정
-//
-//
-//        // 변경된 강의 정보 DB에 저장
-//        lecture = lectureRepository.save(lecture);
-//
-//        return new LectureResponseDto(lecture);
-//    }
-//
-//
-//    // 강의 조회 메서드 + 선택한 강의를 조회할 때 해당 강의에 등록된 댓글들도 함께 조회할 수 있습니다.
-//    private Lecture findLecture(Long lectureId) {
-//        return lectureRepository.findById(lectureId)
-//                .orElseThrow(() -> new IllegalArgumentException("해당 강의는 존재하지 않습니다."));
-//
-//    }
-//
+        if (lectureRequestDto.isRegistrationDate() && lectureRequestDto.isAsc()) {
+            lectures = lectureRepository.findAllByLectureCategoryOrderByLectureRegistrationDateAsc(lectureRequestDto.getLectureCategory());
+        } else if (lectureRequestDto.isRegistrationDate() && lectureRequestDto.isDesc()) {
+            lectures = lectureRepository.findAllByLectureCategoryOrderByLectureRegistrationDateDesc(lectureRequestDto.getLectureCategory());
+        }
 
-////
-//
-//
-//    // 선택한 강의 조회
-//    public LectureResponseDto updateLecture(Long lectureId) {
-//
-//        // 선택 강의가 lecture DB에 존재하는지 확인
-//        Lecture lecture = findLecture(lectureId);
-//
-//        return new LectureResponseDto(lecture);
-//    }
+        if (lectures == null || lectures.isEmpty()) {
+            throw new IllegalArgumentException("선택한 카테고리에 해당하는 강의가 없습니다");
+        }
 
+        return lectures.stream()
+                .map(LectureResponseDto::new)
+                .collect(Collectors.toList());
 
-    // 카테고리별 강의 목록 조회 기능
-//    public List<LectureResponseDto> findLecturesByCategory(CategoryEnum category) {
-////        List<Lecture> lectures = lectureRepository.findByCategory(category);
-//        List<LectureResponseDto> lectureResponseDtos = new ArrayList<>();
-////        for (Lecture lecture : lectures) {
-//            lectureResponseDtos.add(new LectureResponseDto(lecture));
-//        }
-//        return lectureResponseDtos;
-//    }
+    } // 기준과 정렬을 Enum 타입으로 만들어서 쿼리문을 사용해서 만들려고 함 -> DB에 열이 하나 더 생기는게 싫어서 패쓰
+
 
 }
 
