@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 public class TeacherService {
 
     private final TeacherRepository teacherRepository;
-    private final LectureRepository lectureRepository;
 
 
     // 강사 등록 기능

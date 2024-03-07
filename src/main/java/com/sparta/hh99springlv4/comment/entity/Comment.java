@@ -1,37 +1,57 @@
-//package com.sparta.hh99springlv4.comment.entity;
-//
-//import com.sparta.hh99springlv4.comment.dto.CommentRequestDto;
-//import com.sparta.hh99springlv4.lecture.entity.Lecture;
-//import com.sparta.hh99springlv4.user.entity.User;
-//import jakarta.persistence.*;
-//import lombok.Getter;
-//import lombok.NoArgsConstructor;
-//
-//import java.time.LocalDate;
-//
-//@Entity
-//@Getter
-////@Setter
-//@NoArgsConstructor
-//@Table(name = "Comment")
-//public class Comment {
-//
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
-//
-//    @Column(nullable = false) //댓글내용
-//    private String contents;
-//
-//    @Column(nullable = false) //좋아요
-//    private boolean likes;
-//
-//    @Column(nullable = false) //등록일
-//    private LocalDate createdAt;
-//
-//    @Column(nullable = false) //수정일
-//    private LocalDate modifiedAt;
-//
+package com.sparta.hh99springlv4.comment.entity;
+
+import com.sparta.hh99springlv4.comment.dto.CommentRequestDto;
+import com.sparta.hh99springlv4.lecture.entity.Lecture;
+import com.sparta.hh99springlv4.user.entity.User;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDate;
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@Table(name = "Comment")
+public class Comment {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false) // 댓글내용
+    private String comments;
+
+    @Column(nullable = false) // 좋아요
+    private boolean commentLikes;
+
+    @Column(nullable = false) // 좋아요 갯수
+    private long commentLikeCounts;
+
+    @ManyToOne
+    @JoinColumn(name = "lecture_id")
+    private Lecture lecture;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+//    ------------------------- SELF 추가 구현 -------------------------
+
+    @Column(nullable = false) //등록일
+    private LocalDate commentCreatedAt;
+
+    @Column(nullable = false) //수정일
+    private LocalDate CommentModifiedAt;
+
+    public Comment(CommentRequestDto createCommentRequestDto) {
+        this.comments = createCommentRequestDto.getComments();
+        this.commentCreatedAt = LocalDate.now();
+        this.CommentModifiedAt = LocalDate.now();
+    }
+
 //    // Comment 엔티티(주인)에서 Lecture 엔티티에 대해 참조해야함.
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "lecture_id")
@@ -63,4 +83,4 @@
 //    public void updateContents(CommentRequestDto commentRequestDto) {
 //        this.contents = commentRequestDto.getContents();
 //    }
-//}
+}
