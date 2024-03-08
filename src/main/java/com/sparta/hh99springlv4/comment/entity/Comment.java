@@ -57,11 +57,12 @@ public class Comment {
     // 댓글 수정 메서드
     public void updateComment(CommentRequestDto commentRequestDto) {
         this.comments = commentRequestDto.getComments();
-    }
-
-    public void getCommentModifiedAt(LocalDate now) {
         this.CommentModifiedAt = LocalDate.now();
     }
+
+//    public void getCommentModifiedAt(LocalDate now) {
+//        this.CommentModifiedAt = LocalDate.now();
+//    }
 
     // Comment 엔티티(주인)에서 Lecture 엔티티에 대해 참조해야함.
 //    @ManyToOne(fetch = FetchType.LAZY)
