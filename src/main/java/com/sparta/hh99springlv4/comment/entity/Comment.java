@@ -46,10 +46,17 @@ public class Comment {
     @Column(nullable = false) //수정일
     private LocalDate CommentModifiedAt;
 
+//    --------------------------- 메서드 -------------------------------
+
     public Comment(CommentRequestDto createCommentRequestDto) {
         this.comments = createCommentRequestDto.getComments();
         this.commentCreatedAt = LocalDate.now();
         this.CommentModifiedAt = LocalDate.now();
+    }
+
+    // 댓글 수정 메서드
+    public void updateComment(CommentRequestDto commentRequestDto) {
+        this.comments = commentRequestDto.getComments();
     }
 
 //    // Comment 엔티티(주인)에서 Lecture 엔티티에 대해 참조해야함.
@@ -79,8 +86,4 @@ public class Comment {
 //    }
 //
 //
-//    // 댓글 수정 메서드
-//    public void updateContents(CommentRequestDto commentRequestDto) {
-//        this.contents = commentRequestDto.getContents();
-//    }
 }

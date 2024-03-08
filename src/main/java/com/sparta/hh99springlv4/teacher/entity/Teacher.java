@@ -43,10 +43,10 @@ public class Teacher {
 //    @JsonIgnore
     private List<Lecture> lectureList = new ArrayList<>();
 
-//    public void addLectureList(Lecture lecture) {
-//        this.lectureList.add(lecture);
-//        lecture.setTeacher(this);
-//    }
+    public void addLectureList(Lecture lecture) {
+        this.lectureList.add(lecture);
+        lecture.setTeacher(this);
+    }
 //
 //    // 추가된 생성자
 //    public Teacher(Long id) {

@@ -32,3 +32,4 @@ public class LectureResponseDto {
         return this;
     }
 }
+

@@ -9,6 +9,7 @@ import com.sparta.hh99springlv4.lecture.dto.LectureTeacherResponseDto;
 import com.sparta.hh99springlv4.lecture.entity.CategoryEnum;
 import com.sparta.hh99springlv4.lecture.entity.Lecture;
 import com.sparta.hh99springlv4.lecture.repository.LectureRepository;
+import com.sparta.hh99springlv4.teacher.dto.TeacherResponseDto;
 import com.sparta.hh99springlv4.teacher.entity.Teacher;
 import com.sparta.hh99springlv4.teacher.repository.TeacherRepository;
 import lombok.RequiredArgsConstructor;

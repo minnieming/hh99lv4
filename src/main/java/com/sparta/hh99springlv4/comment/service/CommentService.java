@@ -59,6 +59,38 @@ public class CommentService {
         return Pair.of(commentResponseDto, successMessage);
     }
 
+    // 선택한 강의의 선택한 댓글 수정
+    public CommentResponseDto updateComment(Long lectureId, Long commentId, CommentRequestDto commentRequestDto, UserDetailsImpl userDetails) {
+
+        // DB에서 commentId로 댓글 정보 조회
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(()-> new NotFoundException("해당 댓글을 찾을 수 없습니다."));
+
+        // 조회한 댓글이 선택한 강의의 댓글인지 확인
+        if (!comment.getLecture().getId().equals(lectureId)) {
+            throw new NotFoundException("해당 강의의 댓글이 아닙니다.");
+        }
+
+        // 댓글을 작성한 사용자와 현재 로그인한 사용자가 일치하는지 확인
+        if (!comment.getUser().getId().equals(userDetails.getUser().getId())) {
+            throw new UnauthorizedException("본인이 작성한 댓글만 수정할 수 있습니다.");
+        }
+
+        // 선택한 강의와 수정한 댓글 가져오기 -> null 확인
+        comment.updateComment(commentRequestDto);
+        if (commentRequestDto == null) {
+            throw new IllegalArgumentException("수정 할 댓글이 존재하지 않습니다.");
+        }
+        commentRepository.save(comment);
+
+
+        // 댓글 수정하기
+
+        return new CommentResponseDto(comment);
+    }
+
+
+    // 선택한 강의의 선택한 댓글 삭제
 
 //    // 댓글 등록 기능  // + entity ? 선택한 강의를 조회할 때 해당 강의에 등록된 댓글들도 함께 조회할 수 있습니다.
 //    public CommentResponseDto createComment(Long lectureId, CommentRequestDto commentRequestDto) {
@@ -74,7 +106,7 @@ public class CommentService {
 //
 //        return commentResponseDto;
 //    }
-//
+
 //    // 선택한 강의의 댓글 수정  // + lecture 비활성화
 //    @Transactional
 //    public CommentResponseDto updateComment(Long lectureId, Long commentId, CommentRequestDto commentRequestDto, UserDetailsImpl userDetails) {
