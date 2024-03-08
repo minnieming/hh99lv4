@@ -37,11 +37,11 @@ public class CommentController {
     }
 
 
-//    // 선택한 강의의 선택한 댓글 삭제
-//    @DeleteMapping("/lectures/{lectureId}/comments/{commentId}")
-//    public CommentResponseDto deleteComment(@PathVariable Long lectureId, Long commentId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-//        return commentService.deleteComment(lectureId, commentId);
-//    }
+    // 선택한 강의의 선택한 댓글 삭제
+    @DeleteMapping("/lectures/{lectureId}/comments/{commentId}")
+    public String deleteComment(@PathVariable Long lectureId, @PathVariable Long commentId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return commentService.deleteComment(lectureId, commentId, userDetails);
+    }
 //
 //    // 선택한 강의 좋아요 등록
 ////    @PostMapping("/{lectureId}/likes")

@@ -63,6 +63,7 @@ public class CommentService {
     public CommentResponseDto updateComment(Long lectureId, Long commentId, CommentRequestDto commentRequestDto, UserDetailsImpl userDetails) {
 
         // DB에서 commentId로 댓글 정보 조회
+        // 이 과정을 통해서 먼저 comment에 정보들을 넣어야 다른 과정들이 진행된다!
         Comment comment = commentRepository.findById(commentId)
                 .orElseThrow(()-> new NotFoundException("해당 댓글을 찾을 수 없습니다."));
 
@@ -76,21 +77,43 @@ public class CommentService {
             throw new UnauthorizedException("본인이 작성한 댓글만 수정할 수 있습니다.");
         }
 
-        // 선택한 강의와 수정한 댓글 가져오기 -> null 확인
+        // 댓글 수정하기 -> null 확인
+        // 이번 경우에는 entity에 바꾸는 메서드를 만들어서 가져와서 사용했다. (댓글 기능 넣을때 dto에 메서드? 만들어서 사용했던 것 처럼!
         comment.updateComment(commentRequestDto);
         if (commentRequestDto == null) {
             throw new IllegalArgumentException("수정 할 댓글이 존재하지 않습니다.");
         }
         commentRepository.save(comment);
 
-
-        // 댓글 수정하기
-
         return new CommentResponseDto(comment);
     }
 
-
     // 선택한 강의의 선택한 댓글 삭제
+    public String deleteComment(Long lectureId, Long commentId, UserDetailsImpl userDetails) {
+
+        // 댓글 가져와서 entity에 정보 넣고 조회하기
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(()-> new NotFoundException("해당 댓글을 찾을 수 업습니다"));
+
+        // 강의에 맞는 댓글인지, 강의 확인하기!
+        if (!comment.getLecture().getId().equals(lectureId)) {
+            throw new NotFoundException("해당 강의의 댓글이 아닙니다");
+        }
+
+        // 댓글을 삭제해도 되는 본인인지, 본인 여부 확인하기!
+        if (!comment.getUser().getId().equals(userDetails.getUser().getId())) {
+            throw new UnauthorizedException("본인이 작성한 댓글만 삭제 할 수 있습니다.");
+        }
+
+        // 댓글 삭제하기
+        commentRepository.delete(comment);
+
+        return "삭제가 완료되었습니다";
+    }
+
+
+
+
 
 //    // 댓글 등록 기능  // + entity ? 선택한 강의를 조회할 때 해당 강의에 등록된 댓글들도 함께 조회할 수 있습니다.
 //    public CommentResponseDto createComment(Long lectureId, CommentRequestDto commentRequestDto) {
