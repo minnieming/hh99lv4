@@ -3,7 +3,9 @@ package com.sparta.hh99springlv4.comment.service;
 import com.sparta.hh99springlv4.comment.dto.CommentRequestDto;
 import com.sparta.hh99springlv4.comment.dto.CommentResponseDto;
 import com.sparta.hh99springlv4.comment.entity.Comment;
+import com.sparta.hh99springlv4.likes.entity.Likes;
 import com.sparta.hh99springlv4.comment.repository.CommentRepository;
+//import com.sparta.hh99springlv4.comment.repository.LikeRepository;
 import com.sparta.hh99springlv4.lecture.entity.Lecture;
 import com.sparta.hh99springlv4.lecture.repository.LectureRepository;
 import com.sparta.hh99springlv4.user.entity.User;
@@ -14,9 +16,7 @@ import com.sparta.hh99springlv4.user.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
@@ -113,9 +113,6 @@ public class CommentService {
     }
 
 
-
-
-
 //    // 댓글 등록 기능  // + entity ? 선택한 강의를 조회할 때 해당 강의에 등록된 댓글들도 함께 조회할 수 있습니다.
 //    public CommentResponseDto createComment(Long lectureId, CommentRequestDto commentRequestDto) {
 //
@@ -171,7 +168,7 @@ public class CommentService {
 //    }
 //
 //
-//    // 선택한 강의 좋아요 등록  // + 과제에 불린값 // 선택 강의 조회 시 좋아요 수 함께 조회
+    // 선택한 강의 좋아요 등록  // + 과제에 불린값 // 선택 강의 조회 시 좋아요 수 함께 조회
 //    public boolean likesLecture(Long userId, Long lectureId) {
 ////        Lecture lecture = lectureRepository.findByLectureId(lectureId)
 ////                .orElseThrow(() -> new NotFoundException("해당 강의를 찾을 수 없습니다." + lectureId));
@@ -191,6 +188,6 @@ public class CommentService {
 ////            // 좋아요가 있는 경우 -> 좋아요 취소
 ////            likeRepository.delete(like);
 ////            return false; // 좋아요 취소 성공
-//
-//
+
+
 }

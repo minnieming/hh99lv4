@@ -42,10 +42,4 @@ public class CommentController {
     public String deleteComment(@PathVariable Long lectureId, @PathVariable Long commentId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return commentService.deleteComment(lectureId, commentId, userDetails);
     }
-//
-//    // 선택한 강의 좋아요 등록
-////    @PostMapping("/{lectureId}/likes")
-////    public CommentResponseDto likesLecture(@PathVariable Long lectureId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-////        return commentService.likesLecture(lectureId);
-////    }
 }

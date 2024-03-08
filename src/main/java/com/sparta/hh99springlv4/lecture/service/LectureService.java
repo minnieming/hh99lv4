@@ -72,7 +72,10 @@ public class LectureService {
 //        Lecture selectList = new Lecture(lectureRequestDto);
 //        lecture.setCommentList(comment);
 
-        return new LectureTeacherResponseDto(lecture, comments);
+        // 좋아요 카운트 조회
+        Long likeCount = lecture.getLikeCounts();
+
+        return new LectureTeacherResponseDto(lecture, comments, likeCount);
 
 //        -------------------------- LectureResponseDto에 같이 넣어서 가져오는 방법 (두개를 따로 반환도 되나?) ------------------------------
 //        // 받아온 강의 이름으로 repository에서 다른 정보 찾아오기

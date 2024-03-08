@@ -25,12 +25,16 @@ public class LectureTeacherResponseDto {
 
     private List<String> comments;
 
-    public LectureTeacherResponseDto(Lecture lecture, List<Comment> comments) {
+    private Long likeCounts;
+
+
+    public LectureTeacherResponseDto(Lecture lecture, List<Comment> comments, Long likeCount) {
         this.lectureName = lecture.getLectureName();
         this.lecturePrice = lecture.getLecturePrice();
         this.lectureIntro = lecture.getLectureIntro();
         this.lectureCategory = lecture.getLectureCategory();
         this.lectureRegistrationDate = lecture.getLectureRegistrationDate();
+        this.likeCounts = likeCount;
 
         Teacher teacher = lecture.getTeacher();
         this.teacherName = teacher.getTeacherName();
