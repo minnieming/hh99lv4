@@ -17,10 +17,10 @@ public class LectureRequestDto {
     private LocalDate lectureRegistrationDate; //등록일
     private String teacherName; //강사이름
 
-    private boolean name = false;
-    private boolean price = false;
-    private boolean registrationDate = false;
-
-    private boolean asc = false;
-    private boolean desc = false;
+//    private boolean name = false;
+//    private boolean price = false;
+//    private boolean registrationDate = false;
+//
+//    private boolean asc = false;
+//    private boolean desc = false;
 }

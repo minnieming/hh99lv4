@@ -8,7 +8,10 @@ import com.sparta.hh99springlv4.teacher.dto.TeacherRequestDto;
 import com.sparta.hh99springlv4.teacher.dto.TeacherResponseDto;
 import com.sparta.hh99springlv4.teacher.entity.Teacher;
 import com.sparta.hh99springlv4.teacher.repository.TeacherRepository;
+import com.sparta.hh99springlv4.user.exception.UnauthorizedException;
+import com.sparta.hh99springlv4.user.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;

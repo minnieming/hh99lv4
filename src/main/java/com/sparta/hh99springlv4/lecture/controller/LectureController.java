@@ -14,6 +14,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static com.sparta.hh99springlv4.user.entity.UserRoleEnum.Authority.ADMIN;
@@ -39,19 +40,25 @@ public class LectureController {
     }
 
     // 선택한 강의 조회
-    @GetMapping("/select/lecture")
-    public LectureTeacherResponseDto selectLecture(@RequestBody LectureRequestDto lectureRequestDto) {
+    @GetMapping("/select/lecture/{lectureId}")
+    public LectureTeacherResponseDto selectLecture(@PathVariable Long lectureId) {
 
-        LectureTeacherResponseDto lectureTeacherResponseDto = lectureService.selectLecture(lectureRequestDto);
+        LectureTeacherResponseDto lectureTeacherResponseDto = lectureService.selectLecture(lectureId);
 
         return lectureTeacherResponseDto;
     }
 
     // 카테고리별 강의 목록 조회
-    @GetMapping("/find/lecture/category")
-    public List<LectureResponseDto> findCategoryLecuture(@RequestBody LectureRequestDto lectureRequestDto) {
+    @GetMapping("/find/lecture/category/{lectureCategory}")
+    public List<LectureResponseDto> findCategoryLecture(
+            @PathVariable CategoryEnum lectureCategory,
+            @RequestParam(required = false, defaultValue = "false") Boolean name,
+            @RequestParam(required = false, defaultValue = "false") Boolean price,
+            @RequestParam(required = false, defaultValue = "false") Boolean registrationDate,
+            @RequestParam(required = false, defaultValue = "false") Boolean asc,
+            @RequestParam(required = false, defaultValue = "false") Boolean desc){
 
-        return lectureService.findCategoryLecture(lectureRequestDto);
+        return lectureService.findCategoryLecture(lectureCategory, name, price, registrationDate, asc, desc);
 
     }
 

@@ -24,8 +24,8 @@ public class Comment {
     @Column(nullable = false) // 댓글내용
     private String comments;
 
-//    @Column(nullable = false) // 좋아요
-//    private boolean commentLikes;
+    @Column(nullable = false) // 좋아요
+    private boolean commentLikes;
 
     @Column(nullable = false) // 좋아요 갯수
     private long commentLikeCounts;

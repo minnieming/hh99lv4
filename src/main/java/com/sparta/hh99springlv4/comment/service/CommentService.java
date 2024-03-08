@@ -47,7 +47,7 @@ public class CommentService {
         Comment comment = new Comment(createCommentRequestDto);
         comment.setUser(userEmail);
         comment.setLecture(lectureName);
-        comment.setCommentLikeCounts(0);
+//        comment.setCommentLikeCounts(0);
 
         // entity에 넣은 댓글을 repository에 넣기
         Comment saveComment = commentRepository.save(comment);

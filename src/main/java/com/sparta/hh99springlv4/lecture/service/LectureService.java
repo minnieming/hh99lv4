@@ -52,19 +52,17 @@ public class LectureService {
     }
 
     // 선택한 강의 조회 기능
-    public LectureTeacherResponseDto selectLecture(LectureRequestDto lectureRequestDto) {
+    public LectureTeacherResponseDto selectLecture(Long lectureId) {
 
         // 강의 조회
-        Lecture lecture = lectureRepository.findByLectureName(lectureRequestDto.getLectureName());
-        if(lecture == null) {
-            throw new IllegalArgumentException("강의를 찾지 못했습니다");
-        }
+        Lecture lecture = lectureRepository.findById(lectureId)
+                .orElseThrow(()-> new IllegalArgumentException("강의를 찾지 못했습니다."));
 
         // 강사 조회
         Teacher teacher = lecture.getTeacher();
 
         // 댓글 조회
-        List<Comment> comments = commentRepository.findByLecture_LectureName(lectureRequestDto.getLectureName());
+        List<Comment> comments = commentRepository.findByLectureId(lectureId);
         if (comments.isEmpty()) {
             throw new IllegalArgumentException("해당 댓글을 찾지 못했습니다");
         }
@@ -110,29 +108,29 @@ public class LectureService {
     }
 
     // 카테고리별 강의 목록 조회
-    public List<LectureResponseDto> findCategoryLecture(LectureRequestDto lectureRequestDto) {
+    public List<LectureResponseDto> findCategoryLecture(CategoryEnum lectureCategory, boolean name, boolean price, boolean registrationDate, boolean asc, boolean desc) {
 
         // entity에 넣어줄 리스트 타입의 생성자를 호출한다.
         List<Lecture> lectures = null;
 
         // 강의명, 가격, 등록일을 기준으로 내림차순, 오름차순을 선택
         // -> 하나씩 받아서 쿼리문 + if 문 조합으로 사용
-        if (lectureRequestDto.isName() && lectureRequestDto.isAsc()) {
-            lectures = lectureRepository.findAllByLectureCategoryOrderByLectureNameAsc(lectureRequestDto.getLectureCategory());
-        } else if (lectureRequestDto.isName() && lectureRequestDto.isDesc()) {
-            lectures = lectureRepository.findAllByLectureCategoryOrderByLectureNameDesc(lectureRequestDto.getLectureCategory());
+        if (name && asc) {
+            lectures = lectureRepository.findAllByLectureCategoryOrderByLectureNameAsc(lectureCategory);
+        } else if (name && desc) {
+            lectures = lectureRepository.findAllByLectureCategoryOrderByLectureNameDesc(lectureCategory);
         }
 
-        if (lectureRequestDto.isPrice() && lectureRequestDto.isAsc()) {
-            lectures = lectureRepository.findAllByLectureCategoryOrderByLecturePriceAsc(lectureRequestDto.getLectureCategory());
-        } else if (lectureRequestDto.isPrice() && lectureRequestDto.isDesc()) {
-            lectures = lectureRepository.findAllByLectureCategoryOrderByLecturePriceDesc(lectureRequestDto.getLectureCategory());
+        if (price && asc) {
+            lectures = lectureRepository.findAllByLectureCategoryOrderByLecturePriceAsc(lectureCategory);
+        } else if (price && desc) {
+            lectures = lectureRepository.findAllByLectureCategoryOrderByLecturePriceDesc(lectureCategory);
         }
 
-        if (lectureRequestDto.isRegistrationDate() && lectureRequestDto.isAsc()) {
-            lectures = lectureRepository.findAllByLectureCategoryOrderByLectureRegistrationDateAsc(lectureRequestDto.getLectureCategory());
-        } else if (lectureRequestDto.isRegistrationDate() && lectureRequestDto.isDesc()) {
-            lectures = lectureRepository.findAllByLectureCategoryOrderByLectureRegistrationDateDesc(lectureRequestDto.getLectureCategory());
+        if (registrationDate && asc) {
+            lectures = lectureRepository.findAllByLectureCategoryOrderByLectureRegistrationDateAsc(lectureCategory);
+        } else if (registrationDate && desc) {
+            lectures = lectureRepository.findAllByLectureCategoryOrderByLectureRegistrationDateDesc(lectureCategory);
         }
 
         if (lectures == null || lectures.isEmpty()) {
