@@ -24,8 +24,8 @@ public class Comment {
     @Column(nullable = false) // 댓글내용
     private String comments;
 
-    @Column(nullable = false) // 좋아요
-    private boolean commentLikes;
+//    @Column(nullable = false) // 좋아요
+//    private boolean commentLikes;
 
     @Column(nullable = false) // 좋아요 갯수
     private long commentLikeCounts;
@@ -59,11 +59,15 @@ public class Comment {
         this.comments = commentRequestDto.getComments();
     }
 
-//    // Comment 엔티티(주인)에서 Lecture 엔티티에 대해 참조해야함.
+    public void getCommentModifiedAt(LocalDate now) {
+        this.CommentModifiedAt = LocalDate.now();
+    }
+
+    // Comment 엔티티(주인)에서 Lecture 엔티티에 대해 참조해야함.
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "lecture_id")
 //    private Lecture lecture;
-//
+
 //    // 여러개의 댓글이 하나의 사용자에게만 속함.
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "user_id")

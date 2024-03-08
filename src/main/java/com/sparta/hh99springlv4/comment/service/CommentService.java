@@ -16,6 +16,7 @@ import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
@@ -84,6 +85,7 @@ public class CommentService {
             throw new IllegalArgumentException("수정 할 댓글이 존재하지 않습니다.");
         }
         commentRepository.save(comment);
+        comment.getCommentModifiedAt(LocalDate.now());
 
         return new CommentResponseDto(comment);
     }
