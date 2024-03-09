@@ -40,34 +40,24 @@ public class LikesService {
         if (checkLikes != null) {
 //            likesRepository.findByUserAndLecture(user, lecture);
             likesRepository.delete(checkLikes);
+            checkLikes.setLikeSum(checkLikes.getLikeSum() - 1);
+            lecture.setLikeCounts(lecture.getLikeCounts() - 1);
 //            lecture.removeLike(user);
 //            likesRepository.deleteById((Long) like.getId());
 //            lectureRepository.save(lecture);
             return "좋아요가 취소되었습니다";
         }
 
-//        Likes likes = new Likes();
-//        likes.setLikesTime(LocalDateTime.now());
-//        likes.setLecture(lecture);
-//        likes.setUser(user);
-//
-//        likesRepository.save(likes);
-//        lectureRepository.save(lecture);
 
         Likes likes = new Likes(lecture, user);
+        likes.setLikeSum(1L);
+        lecture.setLikeCounts(1L);
         likesRepository.save(likes);
 //        lecture.addLike(user);
 //        lectureRepository.save(lecture);
 
         return "좋아요 되었습니다";
 
-//         좋아요를 눌렀는지 안눌렀는지 여부 확인 -> 좋아요를 눌렀으면 취소하기
-//        Likes likes = new Likes();
-//        if (likes.getLikesTime() != null) {
-//            likesRepository.delete(likes.getId());
-//        }
-//        likes.setLikesTime(LocalDateTime.now());
-//        likesRepository.save(likes);
-//         return 값으로 좋아요 등록 / 취소 여부 반환하기
+//
     }
 }

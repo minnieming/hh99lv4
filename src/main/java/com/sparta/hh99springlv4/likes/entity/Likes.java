@@ -22,6 +22,9 @@ public class Likes {
     @Column(nullable = false) // 좋아요 여부
     private LocalDateTime likesTime;
 
+    @Column(nullable = false)
+    private Long likeSum;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lecture_id")
     private Lecture lecture;
