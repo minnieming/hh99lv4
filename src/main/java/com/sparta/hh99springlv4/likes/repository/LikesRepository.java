@@ -6,14 +6,14 @@ import com.sparta.hh99springlv4.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import java.util.Optional;
-
 @EnableJpaRepositories
 public interface LikesRepository extends JpaRepository<Likes, Long> {
 
     Likes findByUserAndLecture(User user, Lecture lecture);
 
     Likes findByLecture(Lecture lecture);
+
+    long countByLecture(Lecture lecture);
 
 //    boolean existsByUserAndLecture(User user, Lecture lecture);
 //    void deleteByUserAndLecture(User user, Lecture lecture);

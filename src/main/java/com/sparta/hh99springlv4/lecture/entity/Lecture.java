@@ -5,7 +5,6 @@ import com.sparta.hh99springlv4.comment.entity.Comment;
 import com.sparta.hh99springlv4.lecture.dto.LectureRequestDto;
 import com.sparta.hh99springlv4.likes.entity.Likes;
 import com.sparta.hh99springlv4.teacher.entity.Teacher;
-import com.sparta.hh99springlv4.user.entity.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +12,6 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Entity
@@ -54,26 +52,26 @@ public class Lecture {
 //    @JsonIgnore
     private List<Comment> commentList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "lecture", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "lecture", orphanRemoval = true)
     private List<Likes> likeLists = new ArrayList<>();
 
-    // 좋아요 추가
-    public void addLike(User user) {
-        Likes like = new Likes(this, user);
-        likeLists.add(like);
-        likeCounts++;
-    }
-
-    // 좋아요 취소
-    public void removeLike(User user) {
-        for (Likes like : likeLists) {
-            if (like.getLecture().equals(this) && like.getUser().equals(user) && this.likeCounts > 0) {
-                likeLists.remove(like);
-                likeCounts--;
-                return; // 좋아요를 찾았으므로 반복 종료
-            }
-        }
-    }
+//    // 좋아요 추가
+//    public void addLike(User user) {
+//        Likes like = new Likes(this, user);
+//        likeLists.add(like);
+//        likeCounts++;
+//    }
+//
+//    // 좋아요 취소
+//    public void removeLike(User user) {
+//        for (Likes like : likeLists) {
+//            if (like.getLecture().equals(this) && like.getUser().equals(user) && this.likeCounts > 0) {
+//                likeLists.remove(like);
+//                likeCounts--;
+//                return; // 좋아요를 찾았으므로 반복 종료
+//            }
+//        }
+//    }
 
 //    // 사용자의 좋아요 여부 확인
 //    public boolean isLikedByUser(User user) {

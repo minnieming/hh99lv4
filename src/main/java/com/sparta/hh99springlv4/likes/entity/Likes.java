@@ -7,15 +7,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@Table (name = "likes")
+@Table(name = "likes")
 public class Likes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,12 +22,12 @@ public class Likes {
     @Column(nullable = false) // 좋아요 여부
     private LocalDateTime likesTime;
 
-    @ManyToOne
-    @JoinColumn (name = "lecture_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "lecture_id")
     private Lecture lecture;
 
-    @ManyToOne
-    @JoinColumn (name = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Likes(Lecture lecture, User user) {

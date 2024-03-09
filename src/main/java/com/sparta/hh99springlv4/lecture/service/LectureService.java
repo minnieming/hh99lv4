@@ -9,7 +9,7 @@ import com.sparta.hh99springlv4.lecture.dto.LectureTeacherResponseDto;
 import com.sparta.hh99springlv4.lecture.entity.CategoryEnum;
 import com.sparta.hh99springlv4.lecture.entity.Lecture;
 import com.sparta.hh99springlv4.lecture.repository.LectureRepository;
-import com.sparta.hh99springlv4.teacher.dto.TeacherResponseDto;
+import com.sparta.hh99springlv4.likes.repository.LikesRepository;
 import com.sparta.hh99springlv4.teacher.entity.Teacher;
 import com.sparta.hh99springlv4.teacher.repository.TeacherRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static java.util.Arrays.stream;
-
 @Service
 @RequiredArgsConstructor
 public class LectureService {
@@ -28,6 +26,7 @@ public class LectureService {
     private final LectureRepository lectureRepository;
     private final TeacherRepository teacherRepository;
     private final CommentRepository commentRepository;
+    private final LikesRepository likesRepository;
 
     // 강의 등록 기능
     @Transactional
@@ -57,22 +56,22 @@ public class LectureService {
 
         // 강의 조회
         Lecture lecture = lectureRepository.findById(lectureId)
-                .orElseThrow(()-> new IllegalArgumentException("강의를 찾지 못했습니다."));
+                .orElseThrow(() -> new IllegalArgumentException("강의를 찾지 못했습니다."));
 
         // 강사 조회
         Teacher teacher = lecture.getTeacher();
 
         // 댓글 조회
         List<Comment> comments = commentRepository.findByLectureId(lectureId);
-        if (comments.isEmpty()) {
-            throw new IllegalArgumentException("해당 댓글을 찾지 못했습니다");
-        }
+//        if (comments.isEmpty()) {
+//            throw new IllegalArgumentException("해당 댓글을 찾지 못했습니다");
+//        }
 
 //        Lecture selectList = new Lecture(lectureRequestDto);
 //        lecture.setCommentList(comment);
 
         // 좋아요 카운트 조회
-        Long likeCount = lecture.getLikeCounts();
+        long likeCount = likesRepository.countByLecture(lecture);
 
         return new LectureTeacherResponseDto(lecture, comments, likeCount);
 
