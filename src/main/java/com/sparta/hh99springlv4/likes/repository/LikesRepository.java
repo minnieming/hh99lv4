@@ -15,7 +15,5 @@ public interface LikesRepository extends JpaRepository<Likes, Long> {
 
     long countByLecture(Lecture lecture);
 
-//    boolean existsByUserAndLecture(User user, Lecture lecture);
-//    void deleteByUserAndLecture(User user, Lecture lecture);
 }
 

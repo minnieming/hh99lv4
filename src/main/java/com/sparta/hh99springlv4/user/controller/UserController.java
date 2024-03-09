@@ -2,7 +2,6 @@ package com.sparta.hh99springlv4.user.controller;
 
 
 import com.sparta.hh99springlv4.user.dto.SignupRequestDto;
-import com.sparta.hh99springlv4.user.dto.SignupResponseDto;
 import com.sparta.hh99springlv4.user.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

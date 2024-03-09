@@ -35,29 +35,26 @@ public class LikesService {
 
 
         Likes checkLikes = likesRepository.findByUserAndLecture(user, lecture);
-//        Likes checkLikes = likesRepository.findByLecture(lecture);
-//
+
         if (checkLikes != null) {
-//            likesRepository.findByUserAndLecture(user, lecture);
+
             likesRepository.delete(checkLikes);
+
             checkLikes.setLikeSum(checkLikes.getLikeSum() - 1);
             lecture.setLikeCounts(lecture.getLikeCounts() - 1);
-//            lecture.removeLike(user);
-//            likesRepository.deleteById((Long) like.getId());
-//            lectureRepository.save(lecture);
+
             return "좋아요가 취소되었습니다";
         }
 
 
         Likes likes = new Likes(lecture, user);
+
         likes.setLikeSum(1L);
         lecture.setLikeCounts(1L);
+
         likesRepository.save(likes);
-//        lecture.addLike(user);
-//        lectureRepository.save(lecture);
 
         return "좋아요 되었습니다";
 
-//
     }
 }

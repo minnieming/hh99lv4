@@ -1,8 +1,5 @@
 package com.sparta.hh99springlv4.teacher.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import com.sparta.hh99springlv4.lecture.entity.Lecture;
 import com.sparta.hh99springlv4.teacher.dto.TeacherRequestDto;
 import jakarta.persistence.*;
@@ -17,7 +14,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@JsonIgnoreProperties({"teacher_name", "career", "company", "phone", "introduction"})
 @Table(name = "teacher")
 public class Teacher {
     @Id
@@ -40,19 +36,12 @@ public class Teacher {
     private String teacherIntro;
 
     @OneToMany(mappedBy = "teacher")
-//    @JsonIgnore
     private List<Lecture> lectureList = new ArrayList<>();
 
     public void addLectureList(Lecture lecture) {
         this.lectureList.add(lecture);
         lecture.setTeacher(this);
     }
-//
-//    // 추가된 생성자
-//    public Teacher(Long id) {
-//        this.id = id;
-//    }
-
 
     public Teacher(TeacherRequestDto teacherRequestDto) {
         this.teacherName = teacherRequestDto.getTeacherName();

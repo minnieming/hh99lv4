@@ -43,45 +43,19 @@ public class Lecture {
     @Column(nullable = false)
     private Long likeCounts; // 좋아요 카운트
 
+//    ------------------------- 연관 관계 매핑 -------------------------
 
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
     @OneToMany(mappedBy = "lecture")
-//    @JsonIgnore
     private List<Comment> commentList = new ArrayList<>();
 
     @OneToMany(mappedBy = "lecture", orphanRemoval = true)
     private List<Likes> likeLists = new ArrayList<>();
 
-//    // 좋아요 추가
-//    public void addLike(User user) {
-//        Likes like = new Likes(this, user);
-//        likeLists.add(like);
-//        likeCounts++;
-//    }
-//
-//    // 좋아요 취소
-//    public void removeLike(User user) {
-//        for (Likes like : likeLists) {
-//            if (like.getLecture().equals(this) && like.getUser().equals(user) && this.likeCounts > 0) {
-//                likeLists.remove(like);
-//                likeCounts--;
-//                return; // 좋아요를 찾았으므로 반복 종료
-//            }
-//        }
-//    }
-
-//    // 사용자의 좋아요 여부 확인
-//    public boolean isLikedByUser(User user) {
-//        for (Likes like : likesList) {
-//            if (like.getUser().equals(user)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+//    --------------------------- 메서드 -------------------------------
 
     public Lecture(LectureRequestDto lectureRequestDto) {
         this.lectureName = lectureRequestDto.getLectureName();
@@ -89,19 +63,7 @@ public class Lecture {
         this.lectureIntro = lectureRequestDto.getLectureIntro();
         this.lectureCategory = CategoryEnum.valueOf(String.valueOf(lectureRequestDto.getLectureCategory()));
         this.lectureRegistrationDate = LocalDate.now();
-//        this.lectureRegistrationDate = lectureRequestDto.getLectureRegistrationDate();
     }
 
-//    // 좋아요 카운트 증가
-//    public void incrementLikesCount() {
-//        this.likesCount++;
-//    }
-//
-//    // 좋아요 카운트 감소
-//    public void decrementLikesCount() {
-//        if (this.likesCount > 0) {
-//            this.likesCount--;
-//        }
-//    }
 
 }

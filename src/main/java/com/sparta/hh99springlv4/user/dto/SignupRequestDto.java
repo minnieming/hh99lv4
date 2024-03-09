@@ -23,17 +23,5 @@ public class SignupRequestDto {
     private String userAddress;  // 주소
     private boolean admin = false;  // 권한
     private String adminToken = "";  // 권한토큰
-
-//    @Email
-//    @NotBlank
-//    private String email;
-//
-//    @NotBlank
-//    private String password;
-//
-//
-//    @NotBlank
-//    private String userAuthority;
-//    private String adminToken = "";
 }
 

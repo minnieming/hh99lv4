@@ -1,13 +1,14 @@
 package com.sparta.hh99springlv4.likes.controller;
 
-import com.sparta.hh99springlv4.comment.dto.CommentRequestDto;
-//import com.sparta.hh99springlv4.likes.dto.LikesRequestDto;
 import com.sparta.hh99springlv4.likes.service.LikesService;
 import com.sparta.hh99springlv4.user.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
