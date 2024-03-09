@@ -1,7 +1,7 @@
 package com.sparta.hh99springlv4.likes.controller;
 
 import com.sparta.hh99springlv4.comment.dto.CommentRequestDto;
-import com.sparta.hh99springlv4.likes.dto.LikesRequestDto;
+//import com.sparta.hh99springlv4.likes.dto.LikesRequestDto;
 import com.sparta.hh99springlv4.likes.service.LikesService;
 import com.sparta.hh99springlv4.user.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;

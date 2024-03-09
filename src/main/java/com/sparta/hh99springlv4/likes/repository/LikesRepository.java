@@ -11,7 +11,11 @@ import java.util.Optional;
 @EnableJpaRepositories
 public interface LikesRepository extends JpaRepository<Likes, Long> {
 
-    Optional<Likes> findByUserAndLecture(User user, Lecture lecture);
+    Likes findByUserAndLecture(User user, Lecture lecture);
 
+    Likes findByLecture(Lecture lecture);
+
+//    boolean existsByUserAndLecture(User user, Lecture lecture);
+//    void deleteByUserAndLecture(User user, Lecture lecture);
 }
 

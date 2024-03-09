@@ -41,6 +41,7 @@ public class LectureService {
         // RequestDto -> Entity
         Lecture lecture = new Lecture(lectureRequestDto);
         lecture.setTeacher(teacherName);
+        lecture.setLikeCounts(0L);
 
         // DB에 저장
         Lecture saveLecture = lectureRepository.save(lecture);

@@ -90,8 +90,8 @@ public class Lecture {
         this.lecturePrice = lectureRequestDto.getLecturePrice();
         this.lectureIntro = lectureRequestDto.getLectureIntro();
         this.lectureCategory = CategoryEnum.valueOf(String.valueOf(lectureRequestDto.getLectureCategory()));
-//        this.lectureRegistrationDate = LocalDate.now();
-        this.lectureRegistrationDate = lectureRequestDto.getLectureRegistrationDate();
+        this.lectureRegistrationDate = LocalDate.now();
+//        this.lectureRegistrationDate = lectureRequestDto.getLectureRegistrationDate();
     }
 
 //    // 좋아요 카운트 증가

@@ -1,9 +1,10 @@
 package com.sparta.hh99springlv4.likes.service;
 
+import com.fasterxml.jackson.annotation.JacksonInject;
 import com.sparta.hh99springlv4.comment.dto.CommentRequestDto;
 import com.sparta.hh99springlv4.lecture.entity.Lecture;
 import com.sparta.hh99springlv4.lecture.repository.LectureRepository;
-import com.sparta.hh99springlv4.likes.dto.LikesRequestDto;
+//import com.sparta.hh99springlv4.likes.dto.LikesRequestDto;
 import com.sparta.hh99springlv4.likes.entity.Likes;
 import com.sparta.hh99springlv4.likes.repository.LikesRepository;
 import com.sparta.hh99springlv4.user.entity.User;
@@ -13,6 +14,7 @@ import com.sparta.hh99springlv4.user.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -24,7 +26,9 @@ public class LikesService {
     private final LikesRepository likesRepository;
     private final LectureRepository lectureRepository;
     private final UserRepository userRepository;
+    private JacksonInject.Value like;
 
+    @Transactional
     // 선택한 강의 좋아요 기능
     public String likesLecture(Long lectureId, UserDetailsImpl userDetails) {
 
@@ -35,11 +39,15 @@ public class LikesService {
         User user = userRepository.findByUserEmail(userDetails.getUsername())
                 .orElseThrow(()-> new NotFoundException("사용자를 찾을 수 없습니다"));
 
-        Optional <Likes> checkLikes = likesRepository.findByUserAndLecture(user,lecture);
 
-        if (checkLikes.isPresent()) {
-            likesRepository.delete(checkLikes.get());
+        Likes checkLikes = likesRepository.findByUserAndLecture(user,lecture);
+//        Likes checkLikes = likesRepository.findByLecture(lecture);
+//
+        if (checkLikes != null) {
+//            likesRepository.findByUserAndLecture(user, lecture);
+            likesRepository.delete(checkLikes);
             lecture.removeLike(user);
+//            likesRepository.deleteById((Long) like.getId());
             lectureRepository.save(lecture);
             return "좋아요가 취소되었습니다";
         }
@@ -59,13 +67,13 @@ public class LikesService {
 
         return "좋아요 되었습니다";
 
-        // 좋아요를 눌렀는지 안눌렀는지 여부 확인 -> 좋아요를 눌렀으면 취소하기
+//         좋아요를 눌렀는지 안눌렀는지 여부 확인 -> 좋아요를 눌렀으면 취소하기
 //        Likes likes = new Likes();
 //        if (likes.getLikesTime() != null) {
 //            likesRepository.delete(likes.getId());
 //        }
 //        likes.setLikesTime(LocalDateTime.now());
 //        likesRepository.save(likes);
-        // return 값으로 좋아요 등록 / 취소 여부 반환하기
+//         return 값으로 좋아요 등록 / 취소 여부 반환하기
     }
 }
